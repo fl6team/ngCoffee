@@ -51,7 +51,15 @@ export class AddsConfigComponent implements OnInit {
     })
   }
   ngOnInit() {
-    this.addsIngridientsList = this.servedBaseList.getIngridientsByType('adds');
+    //this.addsIngridientsList = this.servedBaseList.getIngridientsByType('adds');
+    this.servedBaseList.fetchData().subscribe(
+      (data) => {
+        this.servedBaseList.ingridientsDataBase = data;
+        this.addsIngridientsList = this.servedBaseList.ingridientsDataBase.filter(ingridient=>{
+          return ingridient.type === 'adds';
+        });
+      }
+    );
   }
 
 }

@@ -27,6 +27,17 @@ export class BaseConfigComponent implements OnInit {
   }
   ngOnInit() {
 
-    this.baseIngridientsList = this.servedBaseList.getIngridientsByType('base');
+    // this.baseIngridientsList = this.servedBaseList.getIngridientsByType('base');
+    this.servedBaseList.fetchData().subscribe(
+      (data) => {
+        this.baseIngridientsList = data.filter(ingridient=>{
+          return ingridient.type === 'base';
+        });;
+          if(this.cup.cupProperties.base === undefined){
+            this.cup.cupProperties.base = this.baseIngridientsList[0];
+            this.cup.cupProperties.base.checkState = true;
+          }
+      }
+    );
   }
 }
