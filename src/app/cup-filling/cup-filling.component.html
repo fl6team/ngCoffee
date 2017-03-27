@@ -1,0 +1,8 @@
+<div class='wrapper container'>
+  <div class='dragula dragula-cup col-xs-6' [dragula]='"another-bag"' [dragulaModel]='cup.definedCup.adds'>
+    <div *ngFor='let item of cup.definedCup.adds'><img src={{item.img}} alt=""></div>
+  </div>
+  <div class='dragula col-xs-6' [dragula]='"another-bag"' [dragulaModel]='choosenIngredients'>
+    <div *ngFor='let item of choosenIngredients'><img src={{item.img}} alt=""></div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+
+<h3>Choose size of your coffee</h3>
+<div *ngIf='cup.cupProperties.size' class="choose-panel">
+		Your current size is: <span>{{cup.cupProperties.size.size}}</span>
+		<button (click)="confirmSize()">Confirm size</button>
+</div>
+<div class="container">
+	<div class="row">
+		<div *ngFor="let cup of cup.cupsList" class="col-xs-3">
+			<a [ngClass]="{'checked-cup':cup.checked}" (click)='defineSize(cup)' class="cup-wrap">
+				<img src={{cup.img}} alt="">
+				<h3>{{cup.size}}</h3>
+			</a>
+		</div>
+	</div>
+</div>

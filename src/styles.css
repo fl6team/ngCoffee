@@ -1,1 +1,319 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+	box-sizing:border-box;
+	font-family: 'Helvetica';
+	color:#fff;
+}
+h1,h2,h3,h4,h5,h6{
+	text-align: center;
+	color:#fff;
+}
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+.gu-hide {
+  display: none !important;
+}
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
+
+.container{
+	min-width: 1170px;
+	margin: auto;
+}
+a,a:hover,a:focus,a:visited{
+	color: #fff;
+	text-decoration: none;
+	outline:none;
+}
+button{
+	outline:none;
+}
+body{
+	background:#181010;
+	background-size: cover;
+}
+
+.main-screen{
+	padding-top: 50px;
+	padding-bottom:100px;
+}
+.main-screen h1{
+	text-align: center;
+	margin-bottom: 50px;
+}
+.coffee-box{
+	background: rgba(62, 61, 61, 0.5);
+	padding: 20px;
+	border-radius: 5px;
+}
+.coffee-box>h3{
+	text-align: center;
+}
+.btn{
+	color:#ffffff;
+	display: block;
+	text-align: center;
+	margin: auto;
+	margin-top: 20px;
+	background: none;
+	border: 1px solid #fff;
+	text-transform: uppercase;
+	transition:0.3s;
+}
+.btn:hover, .btn:focus{
+	background: #fff;
+	color: #575555;
+}
+
+.coffee-box>a{
+	width: 65%;
+	padding: 8px;
+}
+
+
+.coffee-im{
+	width: 128px;
+	height: 128px;
+	margin: auto;
+}
+.coffee-im-1{
+	background: url(assets/img/cup1.png);
+}
+.coffee-im-2{
+	background: url(assets/img/cup2.png);
+}
+.coffee-im-3{
+	background: url(assets/img/cup3.png);
+}
+
+.more-btn{
+	width: 150px;
+	margin-top: 30px;
+}
+
+.main-screen hr{
+	margin-top: 40px;
+	margin-bottom: 30px;
+}
+
+
+.create-btn{
+	width: 300px;
+	height: 50px;
+	padding-top: 15px;
+	font-size: 15px;
+	margin-top: 40px;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+/****Media queries*****/
+/*@media(max-width:991px){
+.coffee-box{
+	margin-top: 40px;
+}
+.coffee-box>a{
+	width: 80%;
+}
+}*/
+
+
+/*******Size-config page*******/
+
+.cup-wrap{
+	display: block;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid rgba(255, 255, 255, 0);
+	border-radius: 5px;
+	transition:0.3s;
+	height: 300px;
+}
+.cup-wrap>img{
+	display: block;
+	margin: auto;
+}
+.cup-wrap:hover{
+	border: 1px solid rgba(255, 255, 255, 1);
+	cursor: pointer;
+}
+.checked-cup{
+	border: 1px solid rgba(255, 255, 255, 1);
+}
+
+
+
+/*********Coffee config page********/
+
+.choose-panel{
+	font-size: 16px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	padding: 10px;
+	background: rgba(56, 50, 52, 0.3);
+}
+.choose-panel>button{
+	display: block;
+  background: none;
+  border: 1px solid #fff;
+  padding: 10px 30px;
+  margin-top: 25px;
+
+}
+
+.current-base{
+	display: inline-block;
+	font-size: 16px;
+  background: #4c312c;
+  padding: 10px;
+	margin-left: 30px;
+  border-bottom-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+.add-component{
+	background: #5d3a3a;
+  display: inline-block;
+  margin: 10px;
+  padding: 7px;
+	position: relative;
+}
+.delete-btn{
+	position: absolute;
+	top: -6px;
+	right: -8px;
+	background: url('assets/img/delete.png');
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	border: none;
+}
+.config-steps{
+	background:rgba(74, 74, 74, 0.5);
+	padding: 5px;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content:space-around;
+}
+.step-index{
+	padding: 4px 9px;
+	font-weight: 600;
+	font-size: 18px;
+	border: 1px solid #a19694;
+	border-bottom-right-radius: 20px;
+	border-top-left-radius: 20px;
+	border-radius: 20px 7px 20px 7px;
+	color: #fff;
+	background: #4c312c;
+}
+.config-steps>button{
+	display: inline-block;
+	width: 24%;
+	font-size: 18px;
+	padding: 15px;
+	background: #1e1b1b;;
+	border: none;
+	text-align: left;
+}
+.config-steps>button.avaliable{
+	background: #4f3f3f;
+}
+.config-steps>button.active{
+	-webkit-box-shadow: 0px 0px 5px 1px rgb(155, 146, 146);
+	-moz-box-shadow: 0px 0px 5px 1px rgb(155, 146, 146);
+	box-shadow: 0px 0px 5px 1px rgb(155, 146, 146);
+	background: #4c3d3d;
+}
+.config-steps>button.active span.step-index{
+	color:#4c312c;
+	border-color: #fff;
+	background: #fff;
+}
+
+
+
+/*.selected{
+	background: #000;
+}*/
+.ingridients{
+
+}
+.checked-item{
+	position: absolute;
+	background: url('assets/img/checked.png');
+	width: 24px;
+	height: 24px;
+	left: 10px;;
+	top: 10px;
+}
+.component-item{
+	display: block;
+	padding: 20px;
+	transition:0.3s;
+	position: relative;
+}
+.component-item:focus{
+	background: rgba(78, 76, 76, 0.5);
+	cursor: pointer;
+}
+.component-item:hover{
+	background: rgba(78, 76, 76, 0.5);
+	cursor: pointer;
+}
+.component-item>img{
+	display: block;
+	margin: auto;
+}
+.filter-buttons{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content:space-around;
+}
+.filter-buttons>button{
+	background: #3e3434;
+  border: none;
+  padding: 10px 40px;
+  font-weight: 600;
+  border-radius: 10px;
+	width: 19%;
+	outline:none;
+}
+.filter-buttons>button:focus{
+	background: #fff;
+	color: #3e3434;
+}
+.filter-buttons{
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+.create-btn{
+	display: block;
+}
+
+/***********Fill in cup**********/
+.dragula{
+	min-height: 350px;
+	border: 1px solid #fff;
+}
+.dragula-cup{
+	display: flex;
+	flex-direction: column-reverse;
+}

@@ -1,0 +1,21 @@
+<h3>Add something tasty</h3>
+<div *ngIf='cup.cupProperties.adds.length' class="choose-panel">
+  <h4>Your current adds:</h4>
+  <span *ngFor='let component of cup.cupProperties.adds' class="add-component">
+    <button (click)='deleteComponent(component)' class="delete-btn"></button>
+    {{component.name}}
+  </span>
+  <button (click)='confirmAdds()' class="btn">Ready to create!</button>
+</div>
+<div class="filter-buttons">
+  <button (click)="filterBy('all')">All</button>
+  <button (click)="filterBy('syrops')">Syrops</button>
+  <button (click)="filterBy('chocolate')">Chocolate adds</button>
+  <button (click)="filterBy('milk')">Milky adds</button>
+  <button (click)="filterBy('alcohol')">Alcohol</button>
+</div>
+<a (click)="addIngridient(component)" *ngFor='let component of addsIngridientsList' class="component-item col-xs-3">
+  <span *ngIf='component.checkState' class="checked-item"></span>
+  <img src={{component.img}} alt="">
+  <h5>{{component.name}}</h5>
+</a>

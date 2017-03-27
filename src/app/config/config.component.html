@@ -1,0 +1,27 @@
+
+<section class="main-screen">
+	<div class="container">
+		<div class="row">
+			<div class="config-steps">
+				<button *ngFor = 'let step of cup.cupProperties.steps'
+								[ngClass]="{'avaliable': step.avaliable,'active': step.active }"
+								[routerLink]='step.router'
+								(click)="makeActiveBtn(step.name)"
+								[disabled] ='!step.avaliable'>
+								<div class="col-xs-2">
+									<span class="step-index">{{step.index}}</span>
+								</div>
+								<div class="col-xs-10">
+									{{step.message}}
+								</div>
+				</button>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="ingridients">
+	      <router-outlet></router-outlet>
+			</div>
+		</div>
+	</div>
+</section>
