@@ -8,28 +8,7 @@ h1,h2,h3,h4,h5,h6{
 	text-align: center;
 	color:#fff;
 }
-.gu-mirror {
-  position: fixed !important;
-  margin: 0 !important;
-  z-index: 9999 !important;
-  opacity: 0.8;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  filter: alpha(opacity=80);
-}
-.gu-hide {
-  display: none !important;
-}
-.gu-unselectable {
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-}
-.gu-transit {
-  opacity: 0.2;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
-  filter: alpha(opacity=20);
-}
+
 
 .container{
 	min-width: 1170px;
@@ -309,11 +288,90 @@ body{
 }
 
 /***********Fill in cup**********/
-.dragula{
-	min-height: 350px;
+
+
+.dragula>div{
+    cursor:move;
+}
+.info-cup{
+	text-align: center;
+}
+.cup-container{
+	width: 242px;
+	height: 400px;
+	background: url(assets/img/cup-wrap.png) no-repeat center;
+	padding-top: 80px;
+	margin: auto;
+}
+.dragula-components{
+	min-height: 200px;
 	border: 1px solid #fff;
+}
+.dragula-components>div{
+	width: 33.333%;
+	float: left;
+}
+.dragula-components>div>img{
+	display: block;
+	margin: auto;
+}
+.dragula-cup-wrap{
+	height: 315px;
+	width: 210px;
+	margin: auto;
 }
 .dragula-cup{
 	display: flex;
-	flex-direction: column-reverse;
+	flex-direction: column;
+	justify-content:flex-end;
+	height: 70%;
+}
+.cup-base{
+	height: 30%;
+	border-top: 10px solid #b96d0f;
+}
+.gu-hide {
+  display: none !important;
+}
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
+.dragula-cup>div{
+	/*border-radius: 20px;*/
+	border-top:4px solid #181010;
+}
+
+.dragula-cup>div.milk{height: 30%;}
+.dragula-cup>div.alcohol{height: 10%;}
+.dragula-cup>div.syrops{height: 20%;}
+.dragula-cup>div.chocolate{height: 15%;}
+
+.nondragable{
+	pointer-events: none;
+	background: #cecece;
+}
+
+.dragula-cup .gu-transit>img, .dragula-cup .gu-mirror>img{
+	display: none;
+}
+.dragula-cup .gu-transit, .dragula-cup .gu-mirror{
+	background: #fff;
+	border-radius: 30%;
 }

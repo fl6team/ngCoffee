@@ -19,12 +19,33 @@ export class CupFillingComponent implements OnInit {
     dragulaService.removeModel.subscribe((value) => {
       this.onRemoveModel(value.slice(1));
     });
-
   }
-  private onDropModel(args) {
-    let [el, target, source] = args;
-    //console.log(this.many)
 
+  public countFillState():number{
+    let sum:number = 0;
+    this.cup.definedCup.adds.forEach(elem=>{
+      sum += elem.fillPercentage;
+    });
+    console.log(sum);
+    return sum;
+  }
+
+
+  //Use this function to refresh ingredient 'disabled' state to initial
+  public refreshDisability():void{
+    this.choosenIngredients.forEach(item=>{
+      item.disabled = false;
+    })
+  }
+
+  private onDropModel(args) {
+    this.refreshDisability();
+    let [el, target, source] = args;
+    this.choosenIngredients.forEach(item=>{
+      if(100 - this.countFillState() < item.fillPercentage){
+        item.disabled = true;
+      }
+    });
   }
 
   private onRemoveModel(args) {
@@ -42,23 +63,32 @@ export class CupFillingComponent implements OnInit {
 
     return ifState;
   }
+  public countCalories():number{
+    let sum:number = 0;
+    this.cup.definedCup.adds.forEach(item=>{
+      sum+=item.kkal;
+    })
+    return sum + this.cup.definedCup.base.kkal;
+  }
+  public countPrice():number{
+    let sum:number = 0;
+    this.cup.definedCup.adds.forEach(item=>{
+      sum+=item.price;
+    })
+    return sum + this.cup.definedCup.base.price;
+  }
 
   ngOnInit() {
     this.choosenIngredients.length = 0;
     this.cup.definedCup.adds.length = 0;
-    
+
     this.cup.cupProperties.adds.forEach((item)=>{
       if(!this.checkIfIn(item)){
         this.choosenIngredients.push(item);
       }
     })
+    this.cup.definedCup.size = this.cup.cupProperties.size;
     this.cup.definedCup.base = this.cup.cupProperties.base;
-    console.log('Initial: ' );
-    console.log(this.cup.cupProperties.adds);
-    console.log('Defined: ' );
-    console.log(this.cup.definedCup.adds);
-    console.log('Choosen: ' );
-    console.log(this.choosenIngredients);
+    this.refreshDisability();
   }
-
 }

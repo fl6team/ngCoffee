@@ -5,4 +5,8 @@ export interface IngridientInterface {
   img:string;
   kkal:number;
   checkState:boolean;
+  fillPercentage:number;
+  disabled:boolean;
+  color:string;
+  price:number;
 }
