@@ -41,13 +41,20 @@ export class AddsConfigComponent implements OnInit {
   }
 
 
-  public filterBy(attr:string):void{
+  public filterBy(obj):void{
+    //Disable active state for all filter buttons
+    this.servedBaseList.filterList.forEach(item=>{
+      item.state = false;
+    })
+    //Make active current button
+    obj.state = true;
+    
     this.addsIngridientsList = this.servedBaseList.getIngridientsByType('adds');
-    if(attr==='all'){
+    if(obj.category==='all'){
       return;
     }
     this.addsIngridientsList = this.addsIngridientsList.filter(item=>{
-      return item.addsType === attr;
+      return item.addsType === obj.category;
     })
   }
   ngOnInit() {

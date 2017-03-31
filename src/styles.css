@@ -53,6 +53,7 @@ body{
 	border: 1px solid #fff;
 	text-transform: uppercase;
 	transition:0.3s;
+	font-weight: 600;
 }
 .btn:hover, .btn:focus{
 	background: #fff;
@@ -90,7 +91,7 @@ body{
 	margin-bottom: 30px;
 }
 
-
+/*    Size component     */
 .create-btn{
 	width: 300px;
 	height: 50px;
@@ -101,19 +102,9 @@ body{
 	border-radius: 5px;
 }
 
-/****Media queries*****/
-/*@media(max-width:991px){
-.coffee-box{
-	margin-top: 40px;
+.cup-list{
+	margin-top: 20px;
 }
-.coffee-box>a{
-	width: 80%;
-}
-}*/
-
-
-/*******Size-config page*******/
-
 .cup-wrap{
 	display: block;
 	margin: auto;
@@ -143,7 +134,8 @@ body{
 	font-size: 16px;
 	margin-bottom: 20px;
 	margin-top: 20px;
-	padding: 10px;
+	padding-top: 10px;
+	padding-bottom: 20px;
 	background: rgba(56, 50, 52, 0.3);
 }
 .choose-panel>button{
@@ -151,10 +143,20 @@ body{
   background: none;
   border: 1px solid #fff;
   padding: 10px 30px;
+	margin: auto;
   margin-top: 25px;
-
+	transition: 0.3s;
 }
-
+.choose-panel>button:hover{
+	display: block;
+  background: none;
+	background: #fff;
+  border: 1px solid #fff;
+}
+/*          Base component               */
+.base-list{
+	margin-top: 30px;
+}
 .current-base{
 	display: inline-block;
 	font-size: 16px;
@@ -163,6 +165,10 @@ body{
 	margin-left: 30px;
   border-bottom-left-radius: 24px;
   border-top-right-radius: 24px;
+}
+.adds-list{
+	width: 80%;
+	margin: auto;
 }
 .add-component{
 	background: #5d3a3a;
@@ -226,13 +232,6 @@ body{
 }
 
 
-
-/*.selected{
-	background: #000;
-}*/
-.ingridients{
-
-}
 .checked-item{
 	position: absolute;
 	background: url('assets/img/checked.png');
@@ -256,8 +255,13 @@ body{
 	cursor: pointer;
 }
 .component-item>img{
+	width: 60%;
+	height: 60%;
 	display: block;
 	margin: auto;
+}
+.component-item>h5{
+	font-weight: bold;
 }
 .filter-buttons{
 	display: flex;
@@ -274,7 +278,7 @@ body{
 	width: 19%;
 	outline:none;
 }
-.filter-buttons>button:focus{
+.filter-buttons>button.filter-active{
 	background: #fff;
 	color: #3e3434;
 }
@@ -288,7 +292,9 @@ body{
 }
 
 /***********Fill in cup**********/
-
+.fill-container{
+	padding-top: 30px;
+}
 
 .dragula>div{
     cursor:move;
@@ -303,18 +309,7 @@ body{
 	padding-top: 80px;
 	margin: auto;
 }
-.dragula-components{
-	min-height: 200px;
-	border: 1px solid #fff;
-}
-.dragula-components>div{
-	width: 33.333%;
-	float: left;
-}
-.dragula-components>div>img{
-	display: block;
-	margin: auto;
-}
+
 .dragula-cup-wrap{
 	height: 315px;
 	width: 210px;
@@ -358,20 +353,49 @@ body{
 	border-top:4px solid #181010;
 }
 
-.dragula-cup>div.milk{height: 30%;}
-.dragula-cup>div.alcohol{height: 10%;}
-.dragula-cup>div.syrops{height: 20%;}
+.dragula-cup>div.milk{height: 60%;}
+.dragula-cup>div.alcohol{height: 25%;}
+.dragula-cup>div.syrops{height: 25%;}
 .dragula-cup>div.chocolate{height: 15%;}
 
 .nondragable{
 	pointer-events: none;
-	background: #cecece;
+	background: rgba(141, 43, 43, 0.4);
+}
+
+.dragula-components{
+	min-height: 200px;
+	border: 1px solid #fff;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	padding: 0;
+}
+.dragula-components>div{
+	width: 33.333%;
+	transition: 0.3s;
+	padding: 30px;
+}
+.dragula-components>div>img{
+	width: 60%;
+	display: block;
+	margin: auto;
+}
+
+.dragula-components>div:hover{
+	background: rgba(78, 76, 76, 0.5);
 }
 
 .dragula-cup .gu-transit>img, .dragula-cup .gu-mirror>img{
 	display: none;
 }
+
+.gu-mirror div, .gu-transit div{
+	display: none;
+}
+
 .dragula-cup .gu-transit, .dragula-cup .gu-mirror{
 	background: #fff;
 	border-radius: 30%;
+	transition: 0.5s;
 }

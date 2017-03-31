@@ -20,7 +20,7 @@ import { AddsConfigComponent } from './adds-config/adds-config.component';
 import { CupFillingComponent } from './cup-filling/cup-filling.component';
 
 import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
-
+import {TooltipModule} from "ngx-tooltip";
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
     HttpModule,
     routes,
     DragulaModule,
+    TooltipModule
   ],
   providers: [
     CupService,

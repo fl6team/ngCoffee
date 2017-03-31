@@ -63,6 +63,10 @@ export class CupFillingComponent implements OnInit {
 
     return ifState;
   }
+  public getHeight(obj:IngridientInterface){
+    //console.log((obj.fillPercentage + '%'))
+    return obj.fillPercentage;
+  }
   public countCalories():number{
     let sum:number = 0;
     this.cup.definedCup.adds.forEach(item=>{

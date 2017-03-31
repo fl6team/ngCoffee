@@ -4,28 +4,46 @@
   <div class="choose-panel">
     <div class="row">
       <div class="col-xs-4">
-        <p class="info-cup">Cup size: {{cup.definedCup.size.size}} ({{cup.definedCup.size.ml}}) ml</p>
+        <h4 class="info-cup">Cup size: {{cup.definedCup.size.size}} ({{cup.definedCup.size.ml}}) ml</h4>
       </div>
       <div class="col-xs-4">
-        <p class="info-cup">Total calories: {{countCalories()}} kcal</p>
+        <h4 class="info-cup">Total calories: {{countCalories()}} kcal</h4>
       </div>
       <div class="col-xs-4">
-        <p class="info-cup">Total price: {{countPrice()}} UAH</p>
+        <h4 class="info-cup">Total price: {{countPrice()}} UAH</h4>
       </div>
     </div>
-    <button>Finish</button>
+    <button class="btn">Finish</button>
   </div>
-  <div class="col-xs-6">
-    <div class="cup-container">
-      <div class="dragula-cup-wrap">
-        <div class='dragula dragula-cup' [dragula]='"another-bag"' [dragulaModel]='cup.definedCup.adds'>
-          <div *ngFor='let item of cup.definedCup.adds' class={{item.addsType}} [style.background]="item.color"></div>
+
+  <div class="row fill-container">
+    <div class="col-xs-5">
+      <div class="cup-container">
+        <div class="dragula-cup-wrap">
+          <div class='dragula dragula-cup' [dragula]='"another-bag"' [dragulaModel]='cup.definedCup.adds'>
+            <div *ngFor='let item of cup.definedCup.adds'
+                  class={{item.addsType}}
+                  [style.background]="item.color"
+                  [tooltip]="item.name + ' (' + item.kkal + ' ccal' + ')' "
+                  tooltipPlacement="right">
+            </div>
+          </div>
+          <div class="cup-base"
+                [style.background]="cup.definedCup.base.color"
+                [tooltip]="cup.definedCup.base.name + ' (' + cup.definedCup.base.kkal + ' ccal' + ')' "
+                tooltipPlacement="right"></div>
         </div>
-        <div class="cup-base" [style.background]="cup.definedCup.base.color"></div>
       </div>
     </div>
-  </div>
-  <div class='dragula dragula-components col-xs-6' [dragula]='"another-bag"' [dragulaModel]='choosenIngredients'>
-    <div [ngClass]="{'nondragable':item.disabled}" *ngFor='let item of choosenIngredients' class={{item.addsType}}><img src={{item.img}} alt=""></div>
+    <div class='dragula dragula-components col-xs-7' [dragula]='"another-bag"' [dragulaModel]='choosenIngredients'>
+        <div *ngFor='let item of choosenIngredients'
+          [ngClass]="{'nondragable':item.disabled}"
+          class={{item.addsType}}>
+          <img src={{item.img}} alt="">
+          <div>
+            <h4>{{item.name}}</h4>
+          </div>
+        </div>
+    </div>
   </div>
 </div>

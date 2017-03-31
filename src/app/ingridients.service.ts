@@ -83,7 +83,7 @@ export class IngridientsService {
       "img":"assets/img/cherries.png",
       "kkal":90,
       "checkState":false,
-      "fillPercentage":20,
+      "fillPercentage":25,
       "disabled":false,
       "color":"#ed3f32",
       "price" :4
@@ -95,7 +95,7 @@ export class IngridientsService {
       "img":"assets/img/coconut.png",
       "kkal":90,
       "checkState":false,
-      "fillPercentage":20,
+      "fillPercentage":25,
       "disabled":false,
       "color":"#e6e6e6",
       "price" :5
@@ -107,7 +107,7 @@ export class IngridientsService {
       "img":"assets/img/hazelnut.png",
       "kkal":90,
       "checkState":false,
-      "fillPercentage":20,
+      "fillPercentage":25,
       "disabled":false,
       "color":"#af7e56",
       "price" :4
@@ -119,7 +119,7 @@ export class IngridientsService {
       "img":"assets/img/strawberry.png",
       "kkal":90,
       "checkState":false,
-      "fillPercentage":20,
+      "fillPercentage":25,
       "disabled":false,
       "color":"#e22f37",
       "price" :5
@@ -167,7 +167,7 @@ export class IngridientsService {
       "img":"assets/img/milk.png",
       "kkal":90,
       "checkState":false,
-      "fillPercentage":30,
+      "fillPercentage":60,
       "disabled":false,
       "color":"#dee7e4",
       "price" :3
@@ -179,7 +179,7 @@ export class IngridientsService {
       "img":"assets/img/milk.png",
       "kkal":90,
       "checkState":false,
-      "fillPercentage":30,
+      "fillPercentage":60,
       "disabled":false,
       "color":"#fbd999",
       "price" :3
@@ -191,7 +191,7 @@ export class IngridientsService {
       "img":"assets/img/milk.png",
       "kkal":90,
       "checkState":false,
-      "fillPercentage":30,
+      "fillPercentage":60,
       "disabled":false,
       "color":"#fcfcfc",
       "price" :4
@@ -203,7 +203,7 @@ export class IngridientsService {
       "img":"assets/img/whiskey.png",
       "kkal":90,
       "checkState":false,
-      "fillPercentage":10,
+      "fillPercentage":25,
       "disabled":false,
       "color":"#de3903",
       "price" :10
@@ -215,7 +215,7 @@ export class IngridientsService {
       "img":"assets/img/whiskey.png",
       "kkal":90,
       "checkState":false,
-      "fillPercentage":10,
+      "fillPercentage":25,
       "disabled":false,
       "color":"#fd9c00",
       "price" :8
@@ -227,12 +227,20 @@ export class IngridientsService {
       "img":"assets/img/whiskey.png",
       "kkal":90,
       "checkState":false,
-      "fillPercentage":10,
+      "fillPercentage":25,
       "disabled":false,
       "color":"#ac2e1f",
       "price" :5
     }
   ];
+
+  public filterList = [
+    {category:"all", text:"All", state:true},
+    {category:"syrops", text:"Syrops", state:false},
+    {category:"chocolate", text:"Chocolate adds", state:false},
+    {category:"milk", text:"Milky adds", state:false},
+    {category:"alcohol", text:"Alcohol", state:false},
+  ]
 
   public getIngridientsByType(type:string):IngridientInterface[]{
     return this.ingridientsDataBase.filter(ingridient=>{
