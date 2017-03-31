@@ -1,5 +1,5 @@
 <h3>Your Coffee:</h3>
-<div class='container'>
+<div class='container' *ngIf="cup.definedCup.base">
   <table class="table">
     <thead>
       <th>Title</th>
@@ -22,11 +22,11 @@
       <td>{{getTotalPrice()}}</td>
     </tr>
   </table>
-  <form action="">
+  <form action="" (ngSubmit)="pushToServer()">
     <div class="form-group">
       <label for="coffeeNaame">Coffe Name:</label>
-      <input type="text" id="coffeeName" placeholder="Coffee Name" class="form-control" >
+      <input type="text" id="coffeeName" required [(ngModel)]="cup.definedCup.name" name="name" placeholder="Coffee Name" class="form-control" pattern="(?=.*[a-z])(?=.*[A-Z]).{6,}" required>
     </div>
-    <button type="submit" class="btn btn-default" (click)="pushToServer()">Submit</button>
+    <button type="submit" class="btn btn-default" >Submit</button>
   </form>
 </div>

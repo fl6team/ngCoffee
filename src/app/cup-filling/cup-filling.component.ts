@@ -31,6 +31,7 @@ export class CupFillingComponent implements OnInit {
   }
 
   public finish():void{
+    this.cup.definedCup.adds.reverse();
     this.route.navigate(['final'])
   }
 
