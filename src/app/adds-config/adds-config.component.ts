@@ -58,6 +58,9 @@ export class AddsConfigComponent implements OnInit {
     })
   }
   ngOnInit() {
+    window.onbeforeunload = function (){
+        return "";
+    };
     //this.addsIngridientsList = this.servedBaseList.getIngridientsByType('adds');
     window.onunload = function(event) {
       window.localStorage.setItem("redirect","true");

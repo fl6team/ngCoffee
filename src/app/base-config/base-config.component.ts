@@ -26,7 +26,9 @@ export class BaseConfigComponent implements OnInit {
     this.route.navigate(['config/adds'])
   }
   ngOnInit() {
-
+    window.onbeforeunload = function (){
+        return "";
+    };
     //this.baseIngridientsList = this.servedBaseList.getIngridientsByType('base');
     window.onunload = function(event) {
       window.localStorage.setItem("redirect","true");

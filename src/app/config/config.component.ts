@@ -16,13 +16,13 @@ export class ConfigComponent implements OnInit {
   }
 
   ngOnInit() {
-    window.onunload = function(event) {
-      window.localStorage.setItem("redirect","true");
-     }
-     if(window.localStorage.getItem("redirect") === "true"){
-       window.localStorage.setItem("redirect","false");
-       this.route.navigate([''])
-     }
+    // window.onunload = function(event) {
+    //   window.localStorage.setItem("redirect","true");
+    //  }
+    //  if(window.localStorage.getItem("redirect") === "true"){
+    //    window.localStorage.setItem("redirect","false");
+    //    this.route.navigate([''])
+    //  }
   }
 
 }

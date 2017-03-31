@@ -431,3 +431,8 @@ body{
 .tooltip-inner{
 	font-size: 16px;
 }
+.img-loader{
+  display: block;
+  margin: 50% auto;
+  width: 100px;
+}
