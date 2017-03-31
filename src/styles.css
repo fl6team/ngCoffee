@@ -319,10 +319,10 @@ body{
 	display: flex;
 	flex-direction: column;
 	justify-content:flex-end;
-	height: 70%;
+	height: 60%;
 }
 .cup-base{
-	height: 30%;
+	height: 40%;
 	border-top: 10px solid #b96d0f;
 }
 .gu-hide {

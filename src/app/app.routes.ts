@@ -9,7 +9,7 @@ import { ConfigComponent } from './config/config.component';
 import { BaseConfigComponent } from './base-config/base-config.component';
 import { AddsConfigComponent } from './adds-config/adds-config.component';
 import { CupFillingComponent } from './cup-filling/cup-filling.component';
-
+import { FinalComponent } from './final/final.component';
 
 
 export const router: Routes = [
@@ -21,6 +21,7 @@ export const router: Routes = [
     {path:'adds', component: AddsConfigComponent },
     {path:'fill-in', component: CupFillingComponent },
   ]},
+  {path:'final', component: FinalComponent },
 ]
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);

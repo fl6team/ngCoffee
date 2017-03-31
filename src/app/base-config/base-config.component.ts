@@ -27,6 +27,31 @@ export class BaseConfigComponent implements OnInit {
   }
   ngOnInit() {
 
-    this.baseIngridientsList = this.servedBaseList.getIngridientsByType('base');
+    //this.baseIngridientsList = this.servedBaseList.getIngridientsByType('base');
+    window.onunload = function(event) {
+      window.localStorage.setItem("redirect","true");
+     }
+     if(window.localStorage.getItem("redirect") === "true"){
+       window.localStorage.setItem("redirect","false");
+       this.route.navigate([''])
+     }
+    // this.baseIngridientsList = this.servedBaseList.getIngridientsByType('base');
+    this.servedBaseList.fetchData().subscribe(
+      (data) => {
+        this.baseIngridientsList = data.filter(ingridient=>{
+          return ingridient.type === 'base';
+        });;
+          if(this.cup.cupProperties.base === undefined){
+            this.cup.cupProperties.base = this.baseIngridientsList[0];
+            this.cup.cupProperties.base.checkState = true;
+          }
+          this.baseIngridientsList.forEach((it)=>{
+              if(it.name === this.cup.cupProperties.base.name){
+                it.checkState = true;
+                return;
+              }
+          });
+      }
+    );
   }
 }

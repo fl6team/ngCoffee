@@ -21,6 +21,7 @@ import { CupFillingComponent } from './cup-filling/cup-filling.component';
 
 import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
 import {TooltipModule} from "ngx-tooltip";
+import { FinalComponent } from './final/final.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {TooltipModule} from "ngx-tooltip";
     ConfigComponent,
     BaseConfigComponent,
     AddsConfigComponent,
-    CupFillingComponent
+    CupFillingComponent,
+    FinalComponent
   ],
   imports: [
     BrowserModule,

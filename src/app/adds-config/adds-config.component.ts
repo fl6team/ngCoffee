@@ -48,7 +48,7 @@ export class AddsConfigComponent implements OnInit {
     })
     //Make active current button
     obj.state = true;
-    
+
     this.addsIngridientsList = this.servedBaseList.getIngridientsByType('adds');
     if(obj.category==='all'){
       return;
@@ -58,7 +58,30 @@ export class AddsConfigComponent implements OnInit {
     })
   }
   ngOnInit() {
-    this.addsIngridientsList = this.servedBaseList.getIngridientsByType('adds');
+    //this.addsIngridientsList = this.servedBaseList.getIngridientsByType('adds');
+    window.onunload = function(event) {
+      window.localStorage.setItem("redirect","true");
+     }
+     if(window.localStorage.getItem("redirect") === "true"){
+       window.localStorage.setItem("redirect","false");
+       this.route.navigate([''])
+     }
+    this.servedBaseList.fetchData().subscribe(
+      (data) => {
+        this.servedBaseList.ingridientsDataBase = data;
+        this.addsIngridientsList = this.servedBaseList.ingridientsDataBase.filter(ingridient=>{
+          return ingridient.type === 'adds';
+        });
+        this.addsIngridientsList.forEach((it)=>{
+          this.cup.cupProperties.adds.forEach((item, i)=>{
+            if(it.name === item.name){
+              it.checkState = true;
+              return;
+            }
+        });
+      }
+    );
+  });
   }
 
 }

@@ -14,7 +14,13 @@ export class SizeComponent implements OnInit {
 
   constructor(private route:Router, private cup:CupService) { }
   ngOnInit() {
-
+    window.onunload = function(event) {
+      window.localStorage.setItem("redirect","true");
+     }
+     if(window.localStorage.getItem("redirect") === "true"){
+       window.localStorage.setItem("redirect","false");
+       this.route.navigate([''])
+     }
   }
   public confirmSize():void{
     this.cup.cupProperties.makeStepActive('baseState');

@@ -30,6 +30,9 @@ export class CupFillingComponent implements OnInit {
     return sum;
   }
 
+  public finish():void{
+    this.route.navigate(['final'])
+  }
 
   //Use this function to refresh ingredient 'disabled' state to initial
   public refreshDisability():void{
@@ -91,6 +94,13 @@ export class CupFillingComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.onunload = function(event) {
+      window.localStorage.setItem("redirect","true");
+     }
+     if(window.localStorage.getItem("redirect") === "true"){
+       window.localStorage.setItem("redirect","false");
+       this.route.navigate([''])
+     }
     this.choosenIngredients.length = 0;
     this.cup.definedCup.adds.length = 0;
 
