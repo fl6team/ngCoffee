@@ -40,7 +40,8 @@ export class BaseConfigComponent implements OnInit {
       (data) => {
         this.baseIngridientsList = data.filter(ingridient=>{
           return ingridient.type === 'base';
-        });;
+        });
+
           this.baseIngridientsList.forEach((it)=>{
               if(it.name === this.cup.cupProperties.base.name){
                 it.checkState = true;
