@@ -4,6 +4,9 @@ import { IngridientsService } from '../ingridients.service';
 import { CupService } from '../cup.service';
 import { Router } from '@angular/router';
 import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
+declare var firebase: any;
+import { DialogService } from "ng2-bootstrap-modal";
+import { SubmitModalComponent } from '../submit-modal/submit-modal.component';
 
 @Component({
   selector: 'app-cup-filling',
@@ -12,12 +15,25 @@ import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
 })
 export class CupFillingComponent implements OnInit {
   public choosenIngredients:IngridientInterface[] = [];
-  constructor(private route:Router,private servedBaseList:IngridientsService, private cup:CupService, private dragulaService: DragulaService) {
+  constructor(private dialogService:DialogService,private route:Router,private servedBaseList:IngridientsService, private cup:CupService, private dragulaService: DragulaService) {
     dragulaService.dropModel.subscribe((value) => {
       this.onDropModel(value.slice(1));
     });
     dragulaService.removeModel.subscribe((value) => {
       this.onRemoveModel(value.slice(1));
+    });
+  }
+  public showConfirm() {
+    let disposable = this.dialogService.addDialog(SubmitModalComponent, {});
+
+    disposable.subscribe((isConfirmed)=>{
+      if(!isConfirmed){
+        return;
+      }
+      this.cup.definedCup.name = isConfirmed;
+      this.cup.definedCup.adds.reverse();
+      firebase.database().ref('/definedCoffee').push(this.cup.definedCup);
+      this.route.navigate(['final'])
     });
   }
 
@@ -28,11 +44,6 @@ export class CupFillingComponent implements OnInit {
     });
     console.log(sum);
     return sum;
-  }
-
-  public finish():void{
-    this.cup.definedCup.adds.reverse();
-    this.route.navigate(['final'])
   }
 
   //Use this function to refresh ingredient 'disabled' state to initial
@@ -96,6 +107,11 @@ export class CupFillingComponent implements OnInit {
   public log(item){
     console.log(item);
   }
+  // public pushToServer():void{
+  //   this.cup.definedCup.adds.reverse();
+  //   firebase.database().ref('/definedCoffee').push(this.cup.definedCup);
+  //   this.route.navigate(['final'])
+  // }
   ngOnInit() {
     window.onunload = function(event) {
       window.localStorage.setItem("redirect","true");

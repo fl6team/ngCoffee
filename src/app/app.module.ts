@@ -23,6 +23,10 @@ import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
 import {TooltipModule} from "ngx-tooltip";
 import { FinalComponent } from './final/final.component';
 
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { SubmitModalComponent } from './submit-modal/submit-modal.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +36,8 @@ import { FinalComponent } from './final/final.component';
     BaseConfigComponent,
     AddsConfigComponent,
     CupFillingComponent,
-    FinalComponent
+    FinalComponent,
+    SubmitModalComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,11 @@ import { FinalComponent } from './final/final.component';
     HttpModule,
     routes,
     DragulaModule,
-    TooltipModule
+    TooltipModule,
+    BootstrapModalModule
+  ],
+  entryComponents: [
+    SubmitModalComponent
   ],
   providers: [
     CupService,

@@ -12,7 +12,7 @@
         <h4 class="info-cup">Total price: {{countPrice()}} UAH</h4>
       </div>
     </div>
-    <button class="btn" (click)="finish()">Finish</button>
+    <button class="btn" (click)="showConfirm()">Ready</button>
   </div>
   <div class="row fill-container">
     <div class="col-xs-5">
@@ -44,6 +44,29 @@
           </div>
           <div class="message">{{item.message}}</div>
         </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="readyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3>Name your coffee</h3>
+      </div>
+      <div class="modal-body">
+        <form action="" (ngSubmit)="pushToServer()">
+          <div class="form-group">
+            <input type="text" required [(ngModel)]="cup.definedCup.name" name="name" placeholder="Coffee Name" class="form-control" pattern="(?=.*[a-z])(?=.*[A-Z]).{6,}" required>
+          </div>
+          <button type="submit" class="btn form-btn">Submit</button>
+        </form>
+      </div>
 
     </div>
   </div>

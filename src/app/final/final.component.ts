@@ -36,9 +36,5 @@ export class FinalComponent implements OnInit {
     });
     return sum + this.cup.definedCup.base.kkal;;
   }
-  public pushToServer():void{
-    firebase.database().ref('/definedCoffee').push(this.cup.definedCup);
-    console.log(JSON.stringify(this.cup.definedCup));
-  }
 
 }
