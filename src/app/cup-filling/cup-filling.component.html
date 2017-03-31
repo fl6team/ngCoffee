@@ -1,9 +1,8 @@
-
 <h3>Drag and drop to fill a cup</h3>
-<div class='container'>
+<div class='container' *ngIf="cup.definedCup.base">
   <div class="choose-panel">
     <div class="row">
-      <div class="col-xs-4">
+      <div class="col-xs-4" *ngIf="cup.definedCup.size">
         <h4 class="info-cup">Cup size: {{cup.definedCup.size.size}} ({{cup.definedCup.size.ml}}) ml</h4>
       </div>
       <div class="col-xs-4">
@@ -15,12 +14,11 @@
     </div>
     <button class="btn" (click)="finish()">Finish</button>
   </div>
-
   <div class="row fill-container">
     <div class="col-xs-5">
       <div class="cup-container">
-        <div class="dragula-cup-wrap">
-          <div class='dragula dragula-cup' [dragula]='"another-bag"' [dragulaModel]='cup.definedCup.adds'>
+        <div class="dragula-cup-wrap" >
+          <div class='dragula dragula-cup' [dragula]='"another-bag"' [dragulaModel]='cup.definedCup.adds' *ngIf="cup.definedCup.adds">
             <div *ngFor='let item of cup.definedCup.adds'
                   class={{item.addsType}}
                   [style.background]="item.color"
@@ -29,7 +27,7 @@
                   <div class="mask"></div>
             </div>
           </div>
-          <div class="cup-base"
+          <div *ngIf="cup.definedCup.base" class="cup-base"
                 [style.background]="cup.definedCup.base.color"
                 [tooltip]="cup.definedCup.base.name + ' (' + cup.definedCup.base.kkal + ' ccal' + ')' "
                 tooltipPlacement="right"></div>

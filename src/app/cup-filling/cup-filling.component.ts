@@ -92,7 +92,9 @@ export class CupFillingComponent implements OnInit {
     })
     return sum + this.cup.definedCup.base.price;
   }
-
+  public log(item){
+    console.log(item);
+  }
   ngOnInit() {
     window.onunload = function(event) {
       window.localStorage.setItem("redirect","true");

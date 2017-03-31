@@ -11,15 +11,17 @@ declare var firebase: any;
 })
 export class FinalComponent implements OnInit {
 
-  constructor(private route:Router,private servedBaseList:IngridientsService, private cup:CupService) { }
+  constructor(private route:Router,private servedBaseList:IngridientsService, private cup:CupService) {  }
 
   ngOnInit() {
     window.onunload = function(event) {
       window.localStorage.setItem("redirect","true");
      }
      if(window.localStorage.getItem("redirect") === "true"){
+       debugger;
        window.localStorage.setItem("redirect","false");
-       this.route.navigate([''])
+       this.route.navigate(['']);
+       return;
      }
   }
   public getTotalPrice():number{
