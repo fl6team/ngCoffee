@@ -11,7 +11,7 @@
       <td>{{cup.cupProperties.base.kkal}}</td>
       <td>{{cup.cupProperties.base.price}}</td>
     </tr>
-    <tr *ngFor='let item of cup.cupProperties.adds'>
+    <tr *ngFor='let item of cup.definedCup.adds'>
       <td>{{item.name}}</td>
       <td>{{item.kkal}}</td>
       <td>{{item.price}}</td>

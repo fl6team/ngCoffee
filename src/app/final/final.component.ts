@@ -18,10 +18,8 @@ export class FinalComponent implements OnInit {
       window.localStorage.setItem("redirect","true");
      }
      if(window.localStorage.getItem("redirect") === "true"){
-       debugger;
        window.localStorage.setItem("redirect","false");
        this.route.navigate(['']);
-       return;
      }
   }
   public getTotalPrice():number{
@@ -29,14 +27,14 @@ export class FinalComponent implements OnInit {
     this.cup.definedCup.adds.forEach( elem =>{
         sum += elem.price;
     });
-    return sum;
+    return sum + this.cup.definedCup.base.price;;
   }
   public getTotalKkal():number{
     let sum:number = 0;
     this.cup.definedCup.adds.forEach( elem =>{
         sum += elem.kkal;
     });
-    return sum;
+    return sum + this.cup.definedCup.base.kkal;;
   }
   public pushToServer():void{
     firebase.database().ref('/definedCoffee').push(this.cup.definedCup);
