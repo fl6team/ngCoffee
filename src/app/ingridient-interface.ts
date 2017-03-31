@@ -9,4 +9,5 @@ export interface IngridientInterface {
   disabled:boolean;
   color:string;
   price:number;
+  message:string;
 }

@@ -35,6 +35,7 @@ export class CupFillingComponent implements OnInit {
   public refreshDisability():void{
     this.choosenIngredients.forEach(item=>{
       item.disabled = false;
+      item.message = '';
     })
   }
 
@@ -44,7 +45,14 @@ export class CupFillingComponent implements OnInit {
     this.choosenIngredients.forEach(item=>{
       if(100 - this.countFillState() < item.fillPercentage){
         item.disabled = true;
+        item.message = 'Not enough space'
       }
+      this.cup.definedCup.adds.forEach(elem=>{
+        if(item.addsType === elem.addsType){
+          item.disabled = true;
+          item.message = `I\`ve already put ${item.addsType} add`;
+        }
+      })
     });
   }
 

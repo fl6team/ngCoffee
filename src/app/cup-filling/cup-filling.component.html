@@ -26,6 +26,7 @@
                   [style.background]="item.color"
                   [tooltip]="item.name + ' (' + item.kkal + ' ccal' + ')' "
                   tooltipPlacement="right">
+                  <div class="mask"></div>
             </div>
           </div>
           <div class="cup-base"
@@ -43,7 +44,9 @@
           <div>
             <h4>{{item.name}}</h4>
           </div>
+          <div class="message">{{item.message}}</div>
         </div>
+
     </div>
   </div>
 </div>
