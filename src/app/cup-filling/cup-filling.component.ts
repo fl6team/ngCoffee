@@ -22,12 +22,17 @@ export class CupFillingComponent implements OnInit {
   }
 
   public countFillState():number{
+    //debugger;
     let sum:number = 0;
     this.cup.definedCup.adds.forEach(elem=>{
       sum += elem.fillPercentage;
     });
-    console.log(sum);
+    // console.log(sum);
     return sum;
+  }
+
+  public finish():void{
+    this.route.navigate(['final'])
   }
 
 
@@ -79,6 +84,13 @@ export class CupFillingComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.onunload = function(event) {
+      window.localStorage.setItem("redirect","true");
+     }
+     if(window.localStorage.getItem("redirect") === "true"){
+       window.localStorage.setItem("redirect","false");
+       this.route.navigate([''])
+     }
     this.choosenIngredients.length = 0;
     this.cup.definedCup.adds.length = 0;
 

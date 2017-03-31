@@ -1,0 +1,41 @@
+<h3>Your Coffee:</h3>
+<div class='container'>
+  <table class="table">
+    <thead>
+      <th>Title</th>
+      <th>Kkal</th>
+      <th>Price</th>
+    </thead>
+    <tr>
+      <td>{{cup.cupProperties.base.name}}</td>
+      <td>{{cup.cupProperties.base.kkal}}</td>
+      <td>{{cup.cupProperties.base.price}}</td>
+    </tr>
+    <tr *ngFor='let item of cup.cupProperties.adds'>
+      <td>{{item.name}}</td>
+      <td>{{item.kkal}}</td>
+      <td>{{item.price}}</td>
+    </tr>
+    <tr>
+      <td>TOTAL</td>
+      <td>{{getTotalKkal()}}</td>
+      <td>{{getTotalPrice()}}</td>
+    </tr>
+  </table>
+  <h3>Enter Contact Info to Finish:</h3>
+  <form action="">
+    <div class="form-group">
+      <label for="userName">Name:</label>
+      <input type="text" placeholder="Name" id="userName" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="userPhone">Phone:</label>
+      <input type="text" if="userPhone" placeholder="Phone" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="coffeeNaame">Coffe Name:</label>
+      <input type="text" if="coffeeName" placeholder="Coffee Name" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-default" (click)="pushToServer()">Submit</button>
+  </form>
+</div>

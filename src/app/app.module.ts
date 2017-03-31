@@ -20,6 +20,7 @@ import { AddsConfigComponent } from './adds-config/adds-config.component';
 import { CupFillingComponent } from './cup-filling/cup-filling.component';
 
 import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
+import { FinalComponent } from './final/final.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
     ConfigComponent,
     BaseConfigComponent,
     AddsConfigComponent,
-    CupFillingComponent
+    CupFillingComponent,
+    FinalComponent
   ],
   imports: [
     BrowserModule,
