@@ -476,3 +476,28 @@ body{
   margin: 50% auto;
   width: 100px;
 }
+
+.final-bill{
+	width: 900px;
+	margin: auto;
+	padding-top: 35px;
+}
+.final-bill>h3{
+
+}
+.final-bill>ul{
+	padding-left: 0;
+	list-style: none;
+	margin-top: 40px;
+}
+.final-bill>ul>li{
+	margin-bottom: 20px;
+	font-size: 16px;
+}
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  font-size: 16px;
+	margin-top: 35px;
+}
