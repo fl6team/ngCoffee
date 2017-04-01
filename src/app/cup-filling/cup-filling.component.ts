@@ -113,6 +113,9 @@ export class CupFillingComponent implements OnInit {
   //   this.route.navigate(['final'])
   // }
   ngOnInit() {
+    window.onbeforeunload = function (){
+        return "";
+    };
     window.onunload = function(event) {
       window.localStorage.setItem("redirect","true");
      }

@@ -432,6 +432,7 @@ body{
 	font-size: 16px;
 }
 
+
 /*          Modal         */
 .modal-content {
 	background-color: #181010;
@@ -469,4 +470,9 @@ body{
 .form-btn{
 	padding: 9px 44px;
   border-radius: 0;
+}
+.img-loader{
+  display: block;
+  margin: 50% auto;
+  width: 100px;
 }

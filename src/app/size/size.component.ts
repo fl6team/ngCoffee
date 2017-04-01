@@ -14,6 +14,9 @@ export class SizeComponent implements OnInit {
 
   constructor(private route:Router, private cup:CupService) { }
   ngOnInit() {
+    window.onbeforeunload = function (){
+        return "";
+    };
     window.onunload = function(event) {
       window.localStorage.setItem("redirect","true");
      }
