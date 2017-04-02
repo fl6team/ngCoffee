@@ -28,7 +28,7 @@ body{
 }
 
 .main-screen{
-	padding-top: 50px;
+	padding-top: 25px;
 	padding-bottom:100px;
 }
 .main-screen h1{
@@ -39,6 +39,7 @@ body{
 	background: rgba(62, 61, 61, 0.5);
 	padding: 20px;
 	border-radius: 5px;
+	margin-bottom: 25px;
 }
 .coffee-box>h3{
 	text-align: center;
@@ -520,4 +521,49 @@ body{
   margin-bottom: 20px;
   font-size: 16px;
 	margin-top: 35px;
+}
+
+.fsLoader{
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  min-height: 1080px;
+  background-color: #181010;
+  box-sizing: border-box;
+  overflow: auto;
+}
+.fsLoader > img{
+  display: block;
+  margin: 100px auto;
+}
+
+.btn-home {
+  width: 110px;
+  border-top-right-radius: 34px;
+  border-top-left-radius: 34px;
+  background: #312d2d;
+	padding-top: 10px;
+  border: none;
+}
+.btn-home:hover {
+	background: #4c312c;
+	color:#fff;
+}
+.btn-home:focus {
+	outline:none;
+	border: 0;
+}
+form>input.owner-name{
+	width: 300px;
+  padding: 10px;
+  display: block;
+  margin: auto;
+  border: 0;
+  background: none;
+  border-bottom: 1px solid #fff;
+  margin-top: 50px;
+	outline: none;
+}
+form>input.owner-name:focus{
+	outline: none;
 }

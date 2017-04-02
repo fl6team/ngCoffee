@@ -4,6 +4,8 @@ import { IngridientsService } from '../ingridients.service';
 import { CupService } from '../cup.service';
 import { Router } from '@angular/router';
 declare var firebase: any;
+import { DialogService } from "ng2-bootstrap-modal";
+import { SuccessModalComponent } from '../success-modal/success-modal.component';
 @Component({
   selector: 'app-final',
   templateUrl: './final.component.html',
@@ -11,7 +13,7 @@ declare var firebase: any;
 })
 export class FinalComponent implements OnInit {
 
-  constructor(private route:Router,private servedBaseList:IngridientsService, private cup:CupService) {  }
+  constructor(private dialogService:DialogService,private route:Router,private servedBaseList:IngridientsService, private cup:CupService) {  }
 
   ngOnInit() {
     window.onbeforeunload = function (){
@@ -38,6 +40,13 @@ export class FinalComponent implements OnInit {
         sum += elem.kkal;
     });
     return sum + this.cup.definedCup.base.kkal + this.cup.definedCup.sugar.kkal;
+  }
+  public showConfirm() {
+    let disposable = this.dialogService.addDialog(SuccessModalComponent, {});
+
+    disposable.subscribe((isConfirmed)=>{
+      this.route.navigate([''])
+    });
   }
 
 }

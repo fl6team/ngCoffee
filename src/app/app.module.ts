@@ -25,6 +25,7 @@ import { FinalComponent } from './final/final.component';
 
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { SubmitModalComponent } from './submit-modal/submit-modal.component';
+import { SuccessModalComponent } from './success-modal/success-modal.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { SubmitModalComponent } from './submit-modal/submit-modal.component';
     AddsConfigComponent,
     CupFillingComponent,
     FinalComponent,
-    SubmitModalComponent
+    SubmitModalComponent,
+    SuccessModalComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { SubmitModalComponent } from './submit-modal/submit-modal.component';
     BootstrapModalModule
   ],
   entryComponents: [
-    SubmitModalComponent
+    SubmitModalComponent,
+    SuccessModalComponent
   ],
   providers: [
     CupService,

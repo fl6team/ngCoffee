@@ -1,4 +1,4 @@
-<div class='container'>
+<div class='container' *ngIf="cup.definedCup.size">
   <div class="final-bill">
     <h3>Your Coffee: {{cup.definedCup.name}}</h3>
     <ul>
@@ -39,6 +39,9 @@
       </tr>
     </table>
 
-    <button [routerLink]="config/base" class="btn">Make an order</button>
+    <form action="" (ngSubmit)="showConfirm()">
+      <input type="text" class="owner-name" placeholder="Put your name:" required>
+      <button class="btn">Make an order</button>
+    </form>
   </div>
 </div>

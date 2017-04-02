@@ -11,22 +11,33 @@ declare var firebase: any;
   styleUrls: ['./predefined.component.css']
 })
 export class PredefinedComponent implements OnInit {
+  public showLoadder = true;
   public coffeeList = [];
   public coffeeToShow = [];
+  public showMoreBtnText = "Show More";
+  public showMoreOrLess = true;
   constructor(private router:Router, private cup:CupService, private servedBaseList:IngridientsService) { }
   public showMore(){
-    this.coffeeToShow.length = this.coffeeList.length;
-    this.coffeeToShow = this.coffeeList;
+    if(this.showMoreOrLess){
+      this.coffeeToShow = this.coffeeList;
+      this.showMoreBtnText = "Show Less";
+      this.showMoreOrLess = false;
+    } else {
+      this.coffeeToShow = this.coffeeList.slice(0,3);
+      this.showMoreBtnText = "Show More";
+      this.showMoreOrLess = true;
+    }
   }
   ngOnInit() {
-
-
     window.localStorage.setItem("redirect","false");
     this.servedBaseList.fetchCoffee().subscribe(
       (data) => {
-        // console.log(data);
         for(let elem in data){
           this.coffeeList.push(data[elem]);
+        }
+        this.showLoadder = false;
+        if(this.coffeeList.length > 3){
+          this.coffeeToShow = this.coffeeList.slice(0,3);
         }
       }
     );
