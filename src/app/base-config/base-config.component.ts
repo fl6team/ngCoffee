@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class BaseConfigComponent implements OnInit {
   public baseIngridientsList:IngridientInterface[];
-
+  public showLoadder = true;
   constructor(private route:Router,private servedBaseList:IngridientsService, private cup:CupService) { }
   public chooseBase(obj:IngridientInterface):void{
     this.baseIngridientsList.forEach(item=>{
@@ -29,7 +29,6 @@ export class BaseConfigComponent implements OnInit {
     window.onbeforeunload = function (){
         return "";
     };
-    //this.baseIngridientsList = this.servedBaseList.getIngridientsByType('base');
     window.onunload = function(event) {
       window.localStorage.setItem("redirect","true");
      }
@@ -37,12 +36,19 @@ export class BaseConfigComponent implements OnInit {
        window.localStorage.setItem("redirect","false");
        this.route.navigate([''])
      }
-    // this.baseIngridientsList = this.servedBaseList.getIngridientsByType('base');
     this.servedBaseList.fetchData().subscribe(
       (data) => {
         this.baseIngridientsList = data.filter(ingridient=>{
           return ingridient.type === 'base';
         });
+        this.showLoadder = false;
+        this.baseIngridientsList.forEach((it)=>{
+            if(it.name === this.cup.cupProperties.base.name){
+              it.checkState = true;
+              return;
+            }
+      }
+    );
       }
     );
   }

@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AddsConfigComponent implements OnInit {
   public addsIngridientsList:IngridientInterface[];
+  public showLoadder = true;
   constructor(private route:Router,private servedBaseList:IngridientsService, private cup:CupService) { }
   public addIngridient(obj:IngridientInterface):void{
     let ifExist:boolean = false;
@@ -30,8 +31,15 @@ export class AddsConfigComponent implements OnInit {
         obj.checkState = false;
         return;
       }
+    });
+    this.addsIngridientsList.forEach((item, i)=>{
+      if(obj.name === item.name){
+        item.checkState = false;
+        return;
+      }
     })
     this.cup.cupProperties.adds.splice(removeIndex, 1);
+
   }
 
   public confirmAdds(){
@@ -58,6 +66,9 @@ export class AddsConfigComponent implements OnInit {
     })
   }
   ngOnInit() {
+    this.cup.cupProperties.adds.forEach((item)=>{
+      item.checkState = false;
+    });
     window.onbeforeunload = function (){
         return "";
     };
@@ -75,6 +86,7 @@ export class AddsConfigComponent implements OnInit {
         this.addsIngridientsList = this.servedBaseList.ingridientsDataBase.filter(ingridient=>{
           return ingridient.type === 'adds';
         });
+        this.showLoadder = false;
         this.addsIngridientsList.forEach((it)=>{
           this.cup.cupProperties.adds.forEach((item, i)=>{
             if(it.name === item.name){
