@@ -39,7 +39,6 @@ export class AddsConfigComponent implements OnInit {
       }
     })
     this.cup.cupProperties.adds.splice(removeIndex, 1);
-
   }
 
   public confirmAdds(){
@@ -72,7 +71,6 @@ export class AddsConfigComponent implements OnInit {
     window.onbeforeunload = function (){
         return "";
     };
-    //this.addsIngridientsList = this.servedBaseList.getIngridientsByType('adds');
     window.onunload = function(event) {
       window.localStorage.setItem("redirect","true");
      }
