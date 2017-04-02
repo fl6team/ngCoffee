@@ -19,11 +19,3 @@ test:
     - npm run test
   post:
     - npm run build
-deployment:
-  production:
-    branch: master
-    codedeploy:
-      coffeeLab:
-        deployment_group: prod
-        region: eu-west-1
-        deployment_config: CodeDeployDefault.AllAtOnce
