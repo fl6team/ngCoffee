@@ -37,7 +37,7 @@ export class FinalComponent implements OnInit {
     this.cup.definedCup.adds.forEach( elem =>{
         sum += elem.kkal;
     });
-    return sum + this.cup.definedCup.base.kkal;;
+    return sum + this.cup.definedCup.base.kkal + this.cup.definedCup.sugar.kkal;
   }
 
 }

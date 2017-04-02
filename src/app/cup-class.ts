@@ -6,6 +6,7 @@ export class CupClass {
   name:string;
   base:IngridientInterface;
   adds:IngridientInterface[] = [];
+  sugar;
   steps = [
     {
       name : "sizeState",

@@ -15,6 +15,13 @@ import { SubmitModalComponent } from '../submit-modal/submit-modal.component';
 })
 export class CupFillingComponent implements OnInit {
   public choosenIngredients:IngridientInterface[] = [];
+  public sugarLevels = [
+    {amount:0, message:"Sugar free", state:false, kkal:0},
+    {amount:1, message:"One sugar bag", state:false, kkal:10},
+    {amount:2, message:"Two sugar bags", state:true, kkal:15},
+    {amount:3, message:"Three sugar bags", state:false, kkal:20},
+    {amount:4, message:"Four sugar bags", state:false, kkal:25}
+  ];
   constructor(private dialogService:DialogService,private route:Router,private servedBaseList:IngridientsService, private cup:CupService, private dragulaService: DragulaService) {
     dragulaService.dropModel.subscribe((value) => {
       this.onDropModel(value.slice(1));
@@ -65,7 +72,7 @@ export class CupFillingComponent implements OnInit {
       this.cup.definedCup.adds.forEach(elem=>{
         if(item.addsType === elem.addsType){
           item.disabled = true;
-          item.message = `I\`ve already put ${item.addsType} add`;
+          item.message = `You\`ve already put ${item.addsType} add`;
         }
       })
     });
@@ -87,7 +94,6 @@ export class CupFillingComponent implements OnInit {
     return ifState;
   }
   public getHeight(obj:IngridientInterface){
-    //console.log((obj.fillPercentage + '%'))
     return obj.fillPercentage;
   }
   public countCalories():number{
@@ -95,7 +101,7 @@ export class CupFillingComponent implements OnInit {
     this.cup.definedCup.adds.forEach(item=>{
       sum+=item.kkal;
     })
-    return sum + this.cup.definedCup.base.kkal;
+    return sum + this.cup.definedCup.base.kkal + this.cup.definedCup.sugar.kkal;
   }
   public countPrice():number{
     let sum:number = 0;
@@ -106,6 +112,14 @@ export class CupFillingComponent implements OnInit {
   }
   public log(item){
     console.log(item);
+  }
+
+  public putSugar(obj):void{
+    this.sugarLevels.forEach(item=>{
+      item.state = false;
+    })
+    obj.state = true;
+    this.cup.definedCup.sugar = obj;
   }
   // public pushToServer():void{
   //   this.cup.definedCup.adds.reverse();
@@ -133,6 +147,13 @@ export class CupFillingComponent implements OnInit {
     })
     this.cup.definedCup.size = this.cup.cupProperties.size;
     this.cup.definedCup.base = this.cup.cupProperties.base;
+
+    this.sugarLevels.forEach(item=>{
+      if(item.state){
+        this.cup.definedCup.sugar = item;
+        return;
+      }
+    })
     this.refreshDisability();
   }
 }

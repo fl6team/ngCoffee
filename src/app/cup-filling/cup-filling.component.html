@@ -2,14 +2,17 @@
 <div class='container' *ngIf="cup.definedCup.base">
   <div class="choose-panel">
     <div class="row">
-      <div class="col-xs-4" *ngIf="cup.definedCup.size">
-        <h4 class="info-cup">Cup size: {{cup.definedCup.size.size}} ({{cup.definedCup.size.ml}}) ml</h4>
+      <div class="col-xs-3" *ngIf="cup.definedCup.size">
+        <h5 class="info-cup">Cup size: {{cup.definedCup.size.size}} ({{cup.definedCup.size.ml}}) ml</h5>
       </div>
-      <div class="col-xs-4">
-        <h4 class="info-cup">Total calories: {{countCalories()}} kcal</h4>
+      <div class="col-xs-3">
+        <h5 class="info-cup">Total calories: {{countCalories()}} kcal</h5>
       </div>
-      <div class="col-xs-4">
-        <h4 class="info-cup">Total price: {{countPrice()}} UAH</h4>
+      <div class="col-xs-3">
+        <h5 class="info-cup">Total price: {{countPrice()}} UAH</h5>
+      </div>
+      <div class="col-xs-3">
+        <h5 class="info-cup">Sugar amount: {{cup.definedCup.sugar.message}}</h5>
       </div>
     </div>
     <button class="btn" (click)="showConfirm()">Ready</button>
@@ -18,6 +21,14 @@
     <div class="col-xs-5">
       <div class="cup-container">
         <div class="dragula-cup-wrap" >
+          <div class="sugar-form"[tooltip]="'Select sugar amount'"
+          tooltipPlacement="top">
+            <button *ngFor="let item of sugarLevels"
+                    (click)="putSugar(item)"
+                    [ngClass]="{'sugar-active':item.state}">
+                    {{item.amount}}
+            </button>
+          </div>
           <div class='dragula dragula-cup' [dragula]='"another-bag"' [dragulaModel]='cup.definedCup.adds' *ngIf="cup.definedCup.adds">
             <div *ngFor='let item of cup.definedCup.adds'
                   class={{item.addsType}}

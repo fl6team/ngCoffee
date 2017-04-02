@@ -306,10 +306,29 @@ body{
 	width: 242px;
 	height: 400px;
 	background: url(assets/img/cup-wrap.png) no-repeat center;
-	padding-top: 80px;
 	margin: auto;
+	padding-top: 40px;
 }
-
+.sugar-form{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	margin-bottom: 15px;
+	height: 25px;
+}
+.sugar-form>button{
+	display: block;
+  width: 15%;
+  background: none;
+  border: 2px solid #e0e4f5;
+  border-radius: 20%;
+  color: #e0e4f5;
+}
+.sugar-form>button.sugar-active{
+	color:#181010;
+	background: #e0e4f5;
+}
 .dragula-cup-wrap{
 	height: 315px;
 	width: 210px;
@@ -378,7 +397,7 @@ body{
 
 .dragula-components{
 	min-height: 200px;
-	border: 1px solid #fff;
+	border: 1px solid #e0e4f5;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
@@ -481,6 +500,7 @@ body{
 	width: 900px;
 	margin: auto;
 	padding-top: 35px;
+	padding-bottom: 100px;
 }
 .final-bill>h3{
 
