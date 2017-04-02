@@ -26,7 +26,24 @@ export class BaseConfigComponent implements OnInit {
     this.route.navigate(['config/adds'])
   }
   ngOnInit() {
-
-    this.baseIngridientsList = this.servedBaseList.getIngridientsByType('base');
+    window.onbeforeunload = function (){
+        return "";
+    };
+    //this.baseIngridientsList = this.servedBaseList.getIngridientsByType('base');
+    window.onunload = function(event) {
+      window.localStorage.setItem("redirect","true");
+     }
+     if(window.localStorage.getItem("redirect") === "true"){
+       window.localStorage.setItem("redirect","false");
+       this.route.navigate([''])
+     }
+    // this.baseIngridientsList = this.servedBaseList.getIngridientsByType('base');
+    this.servedBaseList.fetchData().subscribe(
+      (data) => {
+        this.baseIngridientsList = data.filter(ingridient=>{
+          return ingridient.type === 'base';
+        });
+      }
+    );
   }
 }

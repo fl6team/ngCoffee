@@ -1,31 +1,84 @@
-
 <h3>Drag and drop to fill a cup</h3>
-<div class='container'>
+<div class='container' *ngIf="cup.definedCup.base">
   <div class="choose-panel">
     <div class="row">
-      <div class="col-xs-4">
-        <p class="info-cup">Cup size: {{cup.definedCup.size.size}} ({{cup.definedCup.size.ml}}) ml</p>
+      <div class="col-xs-3" *ngIf="cup.definedCup.size">
+        <h5 class="info-cup">Cup size: {{cup.definedCup.size.size}} ({{cup.definedCup.size.ml}}) ml</h5>
       </div>
-      <div class="col-xs-4">
-        <p class="info-cup">Total calories: {{countCalories()}} kcal</p>
+      <div class="col-xs-3">
+        <h5 class="info-cup">Total calories: {{countCalories()}} kcal</h5>
       </div>
-      <div class="col-xs-4">
-        <p class="info-cup">Total price: {{countPrice()}} UAH</p>
+      <div class="col-xs-3">
+        <h5 class="info-cup">Total price: {{countPrice()}} UAH</h5>
+      </div>
+      <div class="col-xs-3">
+        <h5 class="info-cup">Sugar amount: {{cup.definedCup.sugar.message}}</h5>
       </div>
     </div>
-    <button>Finish</button>
+    <button class="btn" (click)="showConfirm()">Ready</button>
   </div>
-  <div class="col-xs-6">
-    <div class="cup-container">
-      <div class="dragula-cup-wrap">
-        <div class='dragula dragula-cup' [dragula]='"another-bag"' [dragulaModel]='cup.definedCup.adds'>
-          <div *ngFor='let item of cup.definedCup.adds' class={{item.addsType}} [style.background]="item.color"></div>
+  <div class="row fill-container">
+    <div class="col-xs-5">
+      <div class="cup-container">
+        <div class="dragula-cup-wrap" >
+          <div class="sugar-form"[tooltip]="'Select sugar amount'"
+          tooltipPlacement="top">
+            <button *ngFor="let item of sugarLevels"
+                    (click)="putSugar(item)"
+                    [ngClass]="{'sugar-active':item.state}">
+                    {{item.amount}}
+            </button>
+          </div>
+          <div class='dragula dragula-cup' [dragula]='"another-bag"' [dragulaModel]='cup.definedCup.adds' *ngIf="cup.definedCup.adds">
+            <div *ngFor='let item of cup.definedCup.adds'
+                  class={{item.addsType}}
+                  [style.background]="item.color"
+                  [tooltip]="item.name + ' (' + item.kkal + ' ccal' + ')' "
+                  tooltipPlacement="right">
+                  <div class="mask"></div>
+            </div>
+          </div>
+          <div *ngIf="cup.definedCup.base" class="cup-base"
+                [style.background]="cup.definedCup.base.color"
+                [tooltip]="cup.definedCup.base.name + ' (' + cup.definedCup.base.kkal + ' ccal' + ')' "
+                tooltipPlacement="right"></div>
         </div>
-        <div class="cup-base" [style.background]="cup.definedCup.base.color"></div>
       </div>
     </div>
+    <div class='dragula dragula-components col-xs-7' [dragula]='"another-bag"' [dragulaModel]='choosenIngredients'>
+        <div *ngFor='let item of choosenIngredients'
+          [ngClass]="{'nondragable':item.disabled}"
+          class={{item.addsType}}>
+          <img src={{item.img}} alt="">
+          <div>
+            <h4>{{item.name}}</h4>
+          </div>
+          <div class="message">{{item.message}}</div>
+        </div>
+
+    </div>
   </div>
-  <div class='dragula dragula-components col-xs-6' [dragula]='"another-bag"' [dragulaModel]='choosenIngredients'>
-    <div [ngClass]="{'nondragable':item.disabled}" *ngFor='let item of choosenIngredients' class={{item.addsType}}><img src={{item.img}} alt=""></div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="readyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3>Name your coffee</h3>
+      </div>
+      <div class="modal-body">
+        <form action="" (ngSubmit)="pushToServer()">
+          <div class="form-group">
+            <input type="text" required [(ngModel)]="cup.definedCup.name" name="name" placeholder="Coffee Name" class="form-control" pattern="(?=.*[a-z])(?=.*[A-Z]).{6,}" required>
+          </div>
+          <button type="submit" class="btn form-btn">Submit</button>
+        </form>
+      </div>
+
+    </div>
   </div>
 </div>
