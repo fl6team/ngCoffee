@@ -1,0 +1,21 @@
+machine:
+  timezone:
+    Europe/Kiev
+  node:
+    version:
+      6.10.0
+  environment:
+    CIRCLE_ENV: test
+dependencies:
+  pre:
+    - npm install npm@latest -g
+    - npm install angular-cli@latest -g
+  override:
+    - npm install
+  cache_directories:
+    - "node_modules"
+test:
+  override:
+    - npm run test
+  post:
+    - npm run build
