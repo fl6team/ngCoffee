@@ -43,6 +43,7 @@ export class BaseConfigComponent implements OnInit {
         });
         this.showLoadder = false;
         this.baseIngridientsList.forEach((it)=>{
+          if(this.cup.cupProperties.base)
             if(it.name === this.cup.cupProperties.base.name){
               it.checkState = true;
               return;

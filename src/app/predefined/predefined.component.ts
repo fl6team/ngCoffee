@@ -14,21 +14,20 @@ export class PredefinedComponent implements OnInit {
   public showLoadder = true;
   public coffeeList = [];
   public coffeeToShow = [];
-  public showMoreBtnText = "Show More";
-  public showMoreOrLess = true;
+  public showMoreBtn = true;
+  public itemCounter = 3;
   constructor(private router:Router, private cup:CupService, private servedBaseList:IngridientsService) { }
   public showMore(){
-    if(this.showMoreOrLess){
-      this.coffeeToShow = this.coffeeList;
-      this.showMoreBtnText = "Show Less";
-      this.showMoreOrLess = false;
+    if(this.itemCounter + 3 <= this.coffeeList.length){
+      this.itemCounter += 3;
+      this.coffeeToShow = this.coffeeList.slice(0,this.itemCounter);
     } else {
-      this.coffeeToShow = this.coffeeList.slice(0,3);
-      this.showMoreBtnText = "Show More";
-      this.showMoreOrLess = true;
+      this.coffeeToShow = this.coffeeList;
+      this.showMoreBtn = false;
     }
   }
   ngOnInit() {
+    console.log(this.coffeeList);
     window.localStorage.setItem("redirect","false");
     this.servedBaseList.fetchCoffee().subscribe(
       (data) => {
