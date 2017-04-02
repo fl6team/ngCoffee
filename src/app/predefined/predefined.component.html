@@ -13,7 +13,11 @@
 					</div>
 				</div>
 			</div>
-			<a class="btn more-btn" (click)="showMore()">{{showMoreBtnText}}</a>
+
+
+
+			<a *ngIf="showMoreBtn" class="btn more-btn" (click)="showMore()">SHOW MORE</a>
+
 			<hr>
 			<a (click)="configStart()" class="create-btn btn">Create your own coffee</a>
 		</div>
