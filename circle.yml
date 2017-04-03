@@ -19,3 +19,4 @@ test:
     - npm run test
   post:
     - npm run build
+    - git push heroku master
