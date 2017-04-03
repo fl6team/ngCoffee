@@ -24,7 +24,7 @@ export class PredefinedComponent implements OnInit {
   public itemCounter = 3;
   constructor(private router:Router, private cup:CupService, private servedBaseList:IngridientsService) { }
   public showMore(){
-    if(this.itemCounter + 3 <= this.coffeeList.length){
+    if(this.itemCounter + 3 < this.coffeeList.length){
       this.itemCounter += 3;
       this.coffeeToShow = this.coffeeList.slice(0,this.itemCounter);
     } else {
@@ -43,6 +43,9 @@ export class PredefinedComponent implements OnInit {
         this.showLoadder = false;
         if(this.coffeeList.length > 3){
           this.coffeeToShow = this.coffeeList.slice(0,3);
+        } else {
+          this.coffeeToShow = this.coffeeList;
+          this.showMoreBtn = false;
         }
       }
     );
