@@ -1,3 +1,6 @@
+<div *ngIf="showLoadder" class="fsLoader">
+  <img src="assets/img/ring.gif"/>
+</div>
 <h3>Select base for your coffee</h3>
 <div *ngIf='cup.cupProperties.base' class="choose-panel">
   <h4>Your current base is: <span class="current-base">{{cup.cupProperties.base.name}}</span></h4>
