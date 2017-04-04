@@ -1,4 +1,5 @@
 import { IngridientInterface } from './ingridient-interface';
+import { SugarInterface } from './sugar-interface'
 import { CupInterface } from './cup-interface';
 
 export class CupClass {
@@ -6,7 +7,7 @@ export class CupClass {
   name:string;
   base:IngridientInterface;
   adds:IngridientInterface[] = [];
-  sugar;
+  sugar:SugarInterface;
   steps = [
     {
       name : "sizeState",
@@ -56,4 +57,13 @@ export class CupClass {
       }
     })
   }
+  refreshSteps(){
+    this.steps.forEach(item=>{
+      if(item.index !== 1){
+          item.avaliable = false;
+          item.active = false;
+      }
+    })
+  }
+
 }

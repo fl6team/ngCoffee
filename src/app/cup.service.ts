@@ -32,8 +32,17 @@ export class CupService {
     }
   ];
 
+
   public cupProperties =  new CupClass();
   public definedCup =  new CupClass();
+
+  public refreshCups():void{
+    this.cupProperties = new CupClass();
+    this.definedCup =  new CupClass();
+    this.cupsList.forEach(item=>{
+      item.checked = false;
+    })
+  }
   constructor() { }
 
 }

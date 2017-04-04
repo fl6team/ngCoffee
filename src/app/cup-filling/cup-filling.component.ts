@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IngridientInterface } from '../ingridient-interface';
+import { SugarInterface } from '../sugar-interface'
 import { IngridientsService } from '../ingridients.service';
 import { CupService } from '../cup.service';
 import { Router } from '@angular/router';
@@ -15,7 +16,7 @@ import { SubmitModalComponent } from '../submit-modal/submit-modal.component';
 })
 export class CupFillingComponent implements OnInit {
   public choosenIngredients:IngridientInterface[] = [];
-  public sugarLevels = [
+  public sugarLevels:SugarInterface[] = [
     {amount:0, message:"Sugar free", state:false, kkal:0},
     {amount:1, message:"One sugar bag", state:false, kkal:10},
     {amount:2, message:"Two sugar bags", state:true, kkal:15},
@@ -114,18 +115,13 @@ export class CupFillingComponent implements OnInit {
     console.log(item);
   }
 
-  public putSugar(obj):void{
+  public putSugar(obj:SugarInterface):void{
     this.sugarLevels.forEach(item=>{
       item.state = false;
     })
     obj.state = true;
     this.cup.definedCup.sugar = obj;
   }
-  // public pushToServer():void{
-  //   this.cup.definedCup.adds.reverse();
-  //   firebase.database().ref('/definedCoffee').push(this.cup.definedCup);
-  //   this.route.navigate(['final'])
-  // }
   ngOnInit() {
     window.onbeforeunload = function (){
         return "";

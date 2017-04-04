@@ -17,6 +17,12 @@ export class ConfigComponent implements OnInit {
   public goHome(){
     this.route.navigate([''])
   }
+  public reset(){
+    this.cup.refreshCups();
+    this.route.navigate(['config/size']);
+    this.cup.cupProperties.makeStepActive('sizeState');
+    this.cup.cupProperties.makeStepAvaliable('sizeState');
+  }
   ngOnInit() { }
 
 }

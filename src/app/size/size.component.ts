@@ -38,7 +38,6 @@ export class SizeComponent implements OnInit {
     })
     //**
     obj.checked = true;
-
     this.cup.cupProperties.size = obj;
 
   }

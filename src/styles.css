@@ -556,6 +556,23 @@ body{
 	outline:none;
 	border: 0;
 }
+.btn-reset {
+	width: 110px;
+	border-bottom-right-radius: 34px;
+	border-bottom-left-radius: 34px;
+	background: #312d2d;
+	padding-top: 10px;
+	border: none;
+	margin-top: 0;
+}
+.btn-reset:hover {
+	background: #4c312c;
+	color:#fff;
+}
+.btn-reset:focus {
+	outline:none;
+	border: 0;
+}
 form>input.owner-name{
 	width: 300px;
   padding: 10px;
