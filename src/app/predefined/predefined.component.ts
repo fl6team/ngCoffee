@@ -14,22 +14,54 @@ export class PredefinedComponent implements OnInit {
   public showLoadder = true;
   public coffeeList = [];
   public coffeeToShow = [];
-
-  public showMoreBtnText = "Show More";
-  public showMoreOrLess = true;
-
-
-
+  public filter = "";
+  public isFiltered = false;
+  public noItems = false;
+  public filteredList = [];
   public showMoreBtn = true;
   public itemCounter = 3;
   constructor(private router:Router, private cup:CupService, private servedBaseList:IngridientsService) { }
-  public showMore(){
-    if(this.itemCounter + 3 < this.coffeeList.length){
-      this.itemCounter += 3;
-      this.coffeeToShow = this.coffeeList.slice(0,this.itemCounter);
-    } else {
-      this.coffeeToShow = this.coffeeList;
+
+  public applyFilter(){
+    this.noItems = false;
+    if(this.coffeeToShow.length < this.coffeeList.length) {
+      this.showMoreBtn = true;
+    }
+    if(this.filter.length > 0) {
+      this.isFiltered = true;
+    }
+    else {
+      this.isFiltered = false;
+    }
+    this.filteredList = this.coffeeList.filter((item)=>{
+      return item.name.indexOf(this.filter) !== -1;
+    });
+    this.itemCounter = 3;
+    this.coffeeToShow = this.filteredList.slice(0, this.itemCounter);
+    if(this.filteredList.length <= 3) {
       this.showMoreBtn = false;
+    }
+    if(this.filteredList.length < 1) {
+      this.noItems = true;
+    }
+  }
+  public showMore(){
+    if(this.isFiltered){
+      if(this.itemCounter + 3 < this.filteredList.length) {
+        this.itemCounter += 3;
+        this.coffeeToShow = this.filteredList.slice(0,this.itemCounter);
+      } else {
+        this.coffeeToShow = this.filteredList;
+        this.showMoreBtn = false;
+      }
+    } else {
+      if(this.itemCounter + 3 < this.coffeeList.length) {
+        this.itemCounter += 3;
+        this.coffeeToShow = this.coffeeList.slice(0,this.itemCounter);
+      } else {
+        this.coffeeToShow = this.coffeeList;
+        this.showMoreBtn = false;
+      }
     }
   }
   ngOnInit() {
