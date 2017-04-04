@@ -22,6 +22,11 @@
 </div>
 <a (click)="addIngridient(component)" *ngFor='let component of addsIngridientsList' class="component-item col-xs-2">
   <span *ngIf='component.checkState' class="checked-item"></span>
+  <span class="info adds-info">
+    {{component.price}} UAH
+    <hr>
+    {{component.kkal}} kcal
+  </span>
   <img src={{component.img}} alt="">
   <h5>{{component.name}}</h5>
 </a>
