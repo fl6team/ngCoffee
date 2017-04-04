@@ -154,6 +154,23 @@ body{
 	background: #fff;
   border: 1px solid #fff;
 }
+.info{
+	position: absolute;
+  right: 5%;
+  top: 4%;
+  background: #4c312c;
+  line-height: 14px;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 12px;
+	text-align: center;
+}
+.info>hr{
+	margin: 2px 0;
+}
+.adds-info{
+
+}
 /*          Base component               */
 .base-list{
 	margin-top: 30px;
