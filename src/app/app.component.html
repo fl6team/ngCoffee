@@ -1,7 +1,7 @@
 <div class="login-box">
-  <p>Logged in as {{currUser.name}}</p>
+  <p>Logged in as {{currUser.name}} [{{currUser.isAdmin ? 'Admin' : 'User'}}]</p>
   <select (change)="onChange($event.target.value)" class="selector">
-    <option *ngFor="let u of users" value="{{u.name}}">{{u.name}}</option>
+    <option *ngFor="let u of users" value="{{u.name}}">{{u.name}} [{{u.isAdmin ? 'Admin' : 'User'}}]</option>
   </select>
 </div>
 <router-outlet></router-outlet>
