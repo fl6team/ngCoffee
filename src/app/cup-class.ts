@@ -6,6 +6,7 @@ export class CupClass {
   size:CupInterface;
   name:string;
   base:IngridientInterface;
+  author:string;
   adds:IngridientInterface[] = [];
   sugar:SugarInterface;
   steps = [
