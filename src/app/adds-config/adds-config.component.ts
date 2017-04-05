@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AddsConfigComponent implements OnInit {
   public addsIngridientsList:IngridientInterface[];
   public showLoadder = true;
-  constructor(private route:Router,private servedBaseList:IngridientsService, public cup:CupService) { }
+  constructor(private route:Router,public servedBaseList:IngridientsService, public cup:CupService) { }
   public addIngridient(obj:IngridientInterface):void{
     let ifExist:boolean = false;
     this.cup.cupProperties.adds.forEach(item=>{
