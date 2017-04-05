@@ -33,13 +33,23 @@ body{
 }
 .main-screen h1{
 	text-align: center;
-	margin-bottom: 50px;
+  margin-bottom: 35px;
 }
 .coffee-box{
 	background: rgba(62, 61, 61, 0.5);
 	padding: 20px;
 	border-radius: 5px;
 	margin-bottom: 25px;
+	position: relative;
+}
+.coffee-box>a.remove-coffee{
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	background: url(assets/img/remove.png);
+	top:-10px;
+	right:-10px;
+	cursor: pointer;
 }
 .coffee-box>h3{
 	text-align: center;
@@ -313,16 +323,7 @@ body{
 .fill-container{
 	padding-top: 30px;
 }
-.info-message{
-	background: rgba(208, 188, 16, 0.6);
-  width: 50%;
-  margin: auto;
-  text-align: center;
-  border-radius: 20px;
-  padding: 11px;
-  font-weight: bold;
-  font-size: 15px;
-}
+
 .dragula>div{
     cursor:move;
 }
@@ -514,7 +515,9 @@ body{
 	border: 1px solid #faf8f8;
 	outline: none;
 }
-
+.search-form{
+	width: 31%;
+}
 .form-btn{
 	padding: 9px 44px;
   border-radius: 0;
@@ -614,9 +617,9 @@ form>input.owner-name:focus{
 	outline: none;
 }
 
-.cff-selector{
+.cff-selector {
   display: block;
-  margin: 10px auto;
+  margin: 10px auto 30px auto;
   max-width: 275px;
 }
 .cff-selector:after{
@@ -624,8 +627,21 @@ form>input.owner-name:focus{
   content:"";
   display: table;
 }
+.login-box{
+	width: 200px;
+  background: rgba(29, 58, 220, 0.3);
+  padding: 18px;
+	position: absolute;
+}
+.login-box>p{
+	text-align: center;
+}
 .selector{
-  color: black;
+	color: white;
+	display: block;
+	margin: auto;
+	background: none;
+	padding: 5px;
 }
 .selector option{
   color: black;
