@@ -65,7 +65,6 @@ export class PredefinedComponent implements OnInit {
     }
   }
   ngOnInit() {
-    console.log(this.coffeeList);
     window.localStorage.setItem("redirect","false");
     this.servedBaseList.fetchCoffee().subscribe(
       (data) => {
@@ -89,6 +88,7 @@ export class PredefinedComponent implements OnInit {
 
 
   public configStart():void{
+    this.cup.refreshCups();
     this.router.navigate(['config']);
     this.cup.cupProperties.makeStepActive('sizeState');
     this.cup.cupProperties.makeStepAvaliable('sizeState');

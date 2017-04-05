@@ -17,6 +17,13 @@
     </div>
     <button class="btn" (click)="showConfirm()">Ready</button>
   </div>
+  <div class="row">
+    <div *ngIf="messageState" class="info-message">
+      Same coffee already has been created!<br>
+      Coffe name:{{sameCoffee.name}}
+      <button class="btn" (click)="orderSame()">Make and order</button>
+    </div>
+  </div>
   <div class="row fill-container">
     <div class="col-xs-5">
       <div class="cup-container">
@@ -50,7 +57,7 @@
           [ngClass]="{'nondragable':item.disabled}"
           class={{item.addsType}}>
           <div class="info">
-            {{item.price}} UAH
+            {{countIngredientPrice(item)}} UAH
             <hr>
             {{item.kkal}} kcal
           </div>

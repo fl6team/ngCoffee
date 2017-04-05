@@ -20,6 +20,9 @@ export class BaseConfigComponent implements OnInit {
     obj.checkState = true;
     this.cup.cupProperties.base = obj;
   }
+  public countIngredientPrice(obj:IngridientInterface):number{
+    return Math.floor(obj.price * this.cup.cupProperties.size.ml/250);
+  }
   confirmBase(){
     this.cup.cupProperties.makeStepAvaliable('addsState');
     this.cup.cupProperties.makeStepActive('addsState');
@@ -51,5 +54,9 @@ export class BaseConfigComponent implements OnInit {
           }
         });
       });
+
+
+
+
     }
 }

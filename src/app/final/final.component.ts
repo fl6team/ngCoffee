@@ -27,18 +27,28 @@ export class FinalComponent implements OnInit {
        this.route.navigate(['']);
      }
   }
-  public getTotalPrice():number{
+  public goHome(){
+    this.route.navigate(['']);
+  }
+  public countPrice():number{
     let sum:number = 0;
-    this.cup.definedCup.adds.forEach( elem =>{
-        sum += elem.price;
-    });
-    return sum + this.cup.definedCup.base.price;;
+    if(this.cup.definedCup.adds){
+      this.cup.definedCup.adds.forEach(item=>{
+        sum+=Math.floor(item.price * this.cup.definedCup.size.ml/250);
+      })
+    }
+    return sum + Math.floor(this.cup.definedCup.base.price * this.cup.definedCup.size.ml/250);
+  }
+  public countIngredientPrice(obj:IngridientInterface):number{
+    return Math.floor(obj.price * this.cup.definedCup.size.ml/250);
   }
   public getTotalKkal():number{
     let sum:number = 0;
-    this.cup.definedCup.adds.forEach( elem =>{
-        sum += elem.kkal;
-    });
+    if(this.cup.definedCup.adds){
+      this.cup.definedCup.adds.forEach( elem =>{
+          sum += elem.kkal;
+      });
+    }
     return sum + this.cup.definedCup.base.kkal + this.cup.definedCup.sugar.kkal;
   }
   public showConfirm() {

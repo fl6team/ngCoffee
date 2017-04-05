@@ -23,6 +23,9 @@ export class AddsConfigComponent implements OnInit {
       this.cup.cupProperties.adds.push(obj);
     }
   }
+  public countIngredientPrice(obj:IngridientInterface):number{
+    return Math.floor(obj.price * this.cup.cupProperties.size.ml/250);
+  }
   public deleteComponent(obj:IngridientInterface):void{
     let removeIndex:number = 0;
     this.cup.cupProperties.adds.forEach((item, i)=>{

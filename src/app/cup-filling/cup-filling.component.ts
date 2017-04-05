@@ -15,7 +15,10 @@ import { SubmitModalComponent } from '../submit-modal/submit-modal.component';
   styleUrls: ['./cup-filling.component.css']
 })
 export class CupFillingComponent implements OnInit {
+  public coffeeList = [];
   public choosenIngredients:IngridientInterface[] = [];
+  public messageState:boolean = false;
+  public sameCoffee;
   public sugarLevels:SugarInterface[] = [
     {amount:0, message:"Sugar free", state:false, kkal:0},
     {amount:1, message:"One sugar bag", state:false, kkal:10},
@@ -26,20 +29,76 @@ export class CupFillingComponent implements OnInit {
   constructor(private dialogService:DialogService,private route:Router,private servedBaseList:IngridientsService, private cup:CupService, private dragulaService: DragulaService) {
     dragulaService.dropModel.subscribe((value) => {
       this.onDropModel(value.slice(1));
+      this.messageState = false;
     });
     dragulaService.removeModel.subscribe((value) => {
       this.onRemoveModel(value.slice(1));
     });
   }
+  public checkAddsSimilarity(cup, definedCupAdds){
+    if( cup.adds === undefined && definedCupAdds.length === 0 ){
+      return true;
+    }
+    if( cup.adds !== undefined && definedCupAdds.length === 0){
+      return false;
+    }
+    if( cup.adds === undefined && definedCupAdds.length !== 0){
+      return false;
+    }
+    if(cup.adds.length!==definedCupAdds.length){
+      return false;
+    }
+    let array = [];
+    definedCupAdds.forEach(item=>{
+      array.push(item.name);
+    })
+    array.reverse();
+    for(let i = 0; i < cup.adds.length; i++){
+      if(cup.adds[i].name !== array[i]){
+        return false;
+      }
+    }
+    return true;
+  }
+  public checkIfCupExist(){
+    let similarity:boolean = false;
+    let sameCoffee = {};
+    console.log(this.coffeeList)
+    console.log(this.cup.definedCup)
+    this.coffeeList.forEach(item=>{
+      if(item.size.size === this.cup.definedCup.size.size
+      && item.base.name === this.cup.definedCup.base.name
+      && item.sugar.amount === this.cup.definedCup.sugar.amount
+      && this.checkAddsSimilarity(item, this.cup.definedCup.adds)){
+        similarity = true;
+        sameCoffee = item;
+      }
+    });
+    if(similarity){
+      return sameCoffee;
+    }
+  }
+  public orderSame(){
+    this.cup.definedCup = this.sameCoffee;
+    this.route.navigate(['final']);
+    this.messageState = false;
+  }
   public showConfirm() {
-    let disposable = this.dialogService.addDialog(SubmitModalComponent, {});
 
+    if(this.checkIfCupExist()){
+      this.sameCoffee = this.checkIfCupExist();
+      this.messageState = true;
+      return;
+    }
+
+    let disposable = this.dialogService.addDialog(SubmitModalComponent, {});
     disposable.subscribe((isConfirmed)=>{
       if(!isConfirmed){
         return;
       }
       this.cup.definedCup.name = isConfirmed;
-      this.cup.definedCup.adds.reverse();
+      this.cup.definedCup.adds.reverse()
+
       firebase.database().ref('/definedCoffee').push(this.cup.definedCup);
       this.route.navigate(['final'])
     });
@@ -99,17 +158,26 @@ export class CupFillingComponent implements OnInit {
   }
   public countCalories():number{
     let sum:number = 0;
-    this.cup.definedCup.adds.forEach(item=>{
-      sum+=item.kkal;
-    })
+    if(this.cup.definedCup.adds){
+      this.cup.definedCup.adds.forEach(item=>{
+        sum+=item.kkal;
+      })
+    }
     return sum + this.cup.definedCup.base.kkal + this.cup.definedCup.sugar.kkal;
   }
   public countPrice():number{
     let sum:number = 0;
-    this.cup.definedCup.adds.forEach(item=>{
-      sum+=item.price;
-    })
-    return sum + this.cup.definedCup.base.price;
+    if(this.cup.definedCup.adds){
+      this.cup.definedCup.adds.forEach(item=>{
+        sum+=Math.floor(item.price * this.cup.cupProperties.size.ml/250);
+      })
+    }
+
+    return sum + Math.floor(this.cup.definedCup.base.price * this.cup.cupProperties.size.ml/250);
+
+  }
+  public countIngredientPrice(obj:IngridientInterface):number{
+    return Math.floor(obj.price * this.cup.cupProperties.size.ml/250);
   }
   public log(item){
     console.log(item);
@@ -121,8 +189,14 @@ export class CupFillingComponent implements OnInit {
     })
     obj.state = true;
     this.cup.definedCup.sugar = obj;
+    this.messageState = false;
   }
   ngOnInit() {
+
+    if(this.cup.definedCup.adds === undefined){
+      this.cup.definedCup.adds = [];
+    }
+
     window.onbeforeunload = function (){
         return "";
     };
@@ -134,13 +208,17 @@ export class CupFillingComponent implements OnInit {
        this.route.navigate([''])
      }
     this.choosenIngredients.length = 0;
-    this.cup.definedCup.adds.length = 0;
+    if(this.cup.definedCup.adds){
+      this.cup.definedCup.adds.length = 0;
+    }
+
 
     this.cup.cupProperties.adds.forEach((item)=>{
       if(!this.checkIfIn(item)){
         this.choosenIngredients.push(item);
       }
     })
+
     this.cup.definedCup.size = this.cup.cupProperties.size;
     this.cup.definedCup.base = this.cup.cupProperties.base;
 
@@ -151,5 +229,16 @@ export class CupFillingComponent implements OnInit {
       }
     })
     this.refreshDisability();
+
+    this.servedBaseList.fetchCoffee().subscribe(
+      (data) => {
+        for(let elem in data){
+          this.coffeeList.push(data[elem]);
+        }
+      }
+    );
+
+
+
   }
 }

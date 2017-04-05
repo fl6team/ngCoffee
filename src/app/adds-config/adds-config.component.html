@@ -23,7 +23,7 @@
 <a (click)="addIngridient(component)" *ngFor='let component of addsIngridientsList' class="component-item col-xs-2">
   <span *ngIf='component.checkState' class="checked-item"></span>
   <span class="info adds-info">
-    {{component.price}} UAH
+    {{countIngredientPrice(component)}} UAH
     <hr>
     {{component.kkal}} kcal
   </span>

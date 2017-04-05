@@ -11,7 +11,7 @@
     <a (click)="chooseBase(component)" *ngFor='let component of baseIngridientsList' class="component-item col-xs-3">
       <span *ngIf='component.checkState' class="checked-item"></span>
       <span class="info">
-        {{component.price}} UAH
+        {{countIngredientPrice(component)}} UAH
         <hr>
         {{component.kkal}} kcal
       </span>
