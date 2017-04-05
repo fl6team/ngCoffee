@@ -10,6 +10,7 @@ import { routes } from './app.routes';
 //Services
 import { CupService } from './cup.service'
 import { IngridientsService } from './ingridients.service';
+import { AuthService } from './auth.service';
 
 import { AppComponent } from './app.component';
 import { PredefinedComponent } from './predefined/predefined.component';
@@ -57,7 +58,8 @@ import { SuccessModalComponent } from './success-modal/success-modal.component';
   providers: [
     CupService,
     IngridientsService,
-    DragulaService
+    DragulaService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

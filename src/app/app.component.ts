@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   public users = [];
   public currUser;
-  constructor(private route:Router){
+  constructor(private route:Router, private auth: AuthService){
     this.currUser = {name:window.localStorage.getItem("userName") || "guest", isAdmin:window.localStorage.getItem("isAdmin") === "true" || false};
     this.users.push({name:"Thomas", isAdmin: false});
     this.users.push({name:"Richard", isAdmin: false});
