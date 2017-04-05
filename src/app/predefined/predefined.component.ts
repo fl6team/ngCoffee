@@ -114,7 +114,6 @@ export class PredefinedComponent implements OnInit {
 
   public showMy(){
     this.isMySelected = true;
-    this.lastStateOfUsers = this.coffeeToShow;
       this.myCoffee = this.coffeeList.filter((item)=>{
       return item.author === (window.localStorage.getItem("userName") || "guest");
     });
