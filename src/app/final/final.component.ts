@@ -13,7 +13,7 @@ import { SuccessModalComponent } from '../success-modal/success-modal.component'
 })
 export class FinalComponent implements OnInit {
 
-  constructor(private dialogService:DialogService,private route:Router,private servedBaseList:IngridientsService, private cup:CupService) {  }
+  constructor(private dialogService:DialogService,private route:Router,public servedBaseList:IngridientsService, public cup:CupService) {  }
 
   ngOnInit() {
     window.onbeforeunload = function (){

@@ -26,7 +26,7 @@ export class CupFillingComponent implements OnInit {
     {amount:3, message:"Three sugar bags", state:false, kkal:20},
     {amount:4, message:"Four sugar bags", state:false, kkal:25}
   ];
-  constructor(private dialogService:DialogService,private route:Router,private servedBaseList:IngridientsService, private cup:CupService, private dragulaService: DragulaService) {
+  constructor(private dialogService:DialogService,private route:Router,private servedBaseList:IngridientsService, public cup:CupService, private dragulaService: DragulaService) {
     dragulaService.dropModel.subscribe((value) => {
       this.onDropModel(value.slice(1));
       this.messageState = false;

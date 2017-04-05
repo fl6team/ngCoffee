@@ -12,14 +12,14 @@ export class SizeComponent implements OnInit {
   public cupSize:string;
   public coffeeCup = {};
 
-  constructor(private route:Router, private cup:CupService) { }
+  constructor(private route:Router, public cup:CupService) { }
   ngOnInit() {
     window.onbeforeunload = function (){
         return "";
     };
     window.onunload = function(event) {
       window.localStorage.setItem("redirect","true");
-     }
+     };
      if(window.localStorage.getItem("redirect") === "true"){
        window.localStorage.setItem("redirect","false");
        this.route.navigate([''])
@@ -35,7 +35,7 @@ export class SizeComponent implements OnInit {
     //** disable active state for all cups
     this.cup.cupsList.forEach(item=>{
       item.checked = false;
-    })
+    });
     //**
     obj.checked = true;
     this.cup.cupProperties.size = obj;

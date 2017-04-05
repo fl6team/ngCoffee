@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ConfigComponent implements OnInit {
 
-  constructor(private route:Router, private cup:CupService) { }
+  constructor(private route:Router, public cup:CupService) { }
   public makeActiveBtn(state:string):void{
     this.cup.cupProperties.makeStepActive(state)
   }
