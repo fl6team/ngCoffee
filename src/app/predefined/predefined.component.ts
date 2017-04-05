@@ -72,7 +72,6 @@ export class PredefinedComponent implements OnInit {
     this.lastStateOfUsers = this.coffeeToShow;
   }
   ngOnInit() {
-    console.log(this.coffeeList);
     window.localStorage.setItem("redirect","false");
     this.servedBaseList.fetchCoffee().subscribe(
       (data) => {
@@ -129,7 +128,6 @@ export class PredefinedComponent implements OnInit {
   public showAll(){
     this.noItems = false;
     this.coffeeToShow = this.lastStateOfUsers;
-    console.log(this.coffeeToShow);
     if(this.coffeeToShow.length >= 6) {
       this.showMoreBtn = true;
     }

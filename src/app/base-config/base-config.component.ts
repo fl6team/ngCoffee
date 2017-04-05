@@ -54,9 +54,5 @@ export class BaseConfigComponent implements OnInit {
           }
         });
       });
-
-
-
-
     }
 }

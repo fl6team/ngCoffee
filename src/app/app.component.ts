@@ -10,15 +10,11 @@ import { IngridientsService } from './ingridients.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public users = [];
-  public currUser;
   constructor(private route:Router, private auth: AuthService,public servedBaseList:IngridientsService){
-    this.currUser = {name:window.localStorage.getItem("userName") || "guest", isAdmin:window.localStorage.getItem("isAdmin") === "true" || false};
    }
    public getcurrentUser(){
      return {name:window.localStorage.getItem("userName") || "guest", isAdmin:window.localStorage.getItem("isAdmin") === "true" || false};
    }
   ngOnInit(){
-    console.log(this.currUser);
   }
 }

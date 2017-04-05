@@ -23,8 +23,6 @@ export class AuthService {
   public isCurrentUserAdmin = false;
   constructor(public router: Router,private http: Http, public servedBaseList:IngridientsService) {
     this.userProfile = JSON.parse(localStorage.getItem('profile'));
-    //this.users = this.servedBaseList.users;
-
     this
       .router
       .events
@@ -40,15 +38,8 @@ export class AuthService {
               alert(error);
               return;
             }
-            //debugger;
-            // window.localStorage.setItem("userName", profile.name);
-            // window.localStorage.setItem("nickName", profile.nickname);
-            // window.localStorage.setItem("isAdmin", "false");
-
             this.servedBaseList.fetchUsers().subscribe(
               (data) => {
-                debugger;
-                //this.users = data;
                 for(let u in data){
                   this.users.push(data[u])
                 }
@@ -59,16 +50,10 @@ export class AuthService {
                   }
                 });
                 if(!this.usersExist) firebase.database().ref('/users').push(profile);
-
                 window.localStorage.setItem("userName", profile.name);
                 window.localStorage.setItem("nickName", profile.nickname);
                 window.localStorage.setItem("isAdmin", this.isCurrentUserAdmin.toString());
-
                 });
-
-
-
-            //localStorage.setItem('profile', JSON.stringify(profile));
             this.userProfile = profile;
           });
           localStorage.setItem('id_token', authResult.idToken);

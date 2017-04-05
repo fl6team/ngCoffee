@@ -64,8 +64,6 @@
         public checkIfCupExist(){
           let similarity:boolean = false;
           let sameCoffee = {};
-          console.log(this.coffeeList)
-          console.log(this.cup.definedCup)
           this.coffeeList.forEach(item=>{
             if(item.size.size === this.cup.definedCup.size.size
             && item.base.name === this.cup.definedCup.base.name
@@ -110,7 +108,6 @@
           this.cup.definedCup.adds.forEach(elem=>{
             sum += elem.fillPercentage;
           });
-          console.log(sum);
           return sum;
         }
 
@@ -141,7 +138,6 @@
 
         private onRemoveModel(args) {
           let [el, source] = args;
-          // do something else
         }
         public checkIfIn(obj:IngridientInterface):boolean{
           let ifState:boolean = false;
@@ -151,7 +147,6 @@
                 return;
               }
           })
-
           return ifState;
         }
         public getHeight(obj:IngridientInterface){
@@ -179,9 +174,6 @@
         }
         public countIngredientPrice(obj:IngridientInterface):number{
           return Math.floor(obj.price * this.cup.cupProperties.size.ml/250);
-        }
-        public log(item){
-          console.log(item);
         }
 
         public putSugar(obj:SugarInterface):void{
