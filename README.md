@@ -1,5 +1,5 @@
 ### Project Status
-[![CircleCI](https://img.shields.io/circleci/project/github/fl6team/ngCoffee/master.svg)](https://circleci.com/gh/fl6team/ngCoffee/tree/master)  
+[![CircleCI](https://img.shields.io/circleci/project/github/fl6team/ngCoffee/master.svg)](https://circleci.com/gh/fl6team/ngCoffee/tree/master)
 [![Dependency Status](https://david-dm.org/fl6team/ngCoffee.svg)](https://david-dm.org/fl6team/ngCoffee)
 [![devDependency Status](https://david-dm.org/fl6team/ngCoffee/dev-status.svg)](https://david-dm.org/fl6team/ngCoffee?type=dev)
 

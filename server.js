@@ -15,7 +15,7 @@ const forceSSL = function() {
 };
 
 
-app.use(forceSSL());
+//app.use(forceSSL());
 
 // Run the app by serving the static files
 // in the dist directory
@@ -28,3 +28,4 @@ app.get('/*', function(req, res) {
 // Start the app by listening on the default
 // Heroku port
 app.listen(process.env.PORT || 8080);
+console.log('Server started at port: ', process.env.PORT || 8080);

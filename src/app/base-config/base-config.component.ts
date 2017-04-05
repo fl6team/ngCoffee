@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class BaseConfigComponent implements OnInit {
   public baseIngridientsList:IngridientInterface[];
   public showLoadder = true;
-  constructor(private route:Router,private servedBaseList:IngridientsService, private cup:CupService) { }
+  constructor(private route:Router,private servedBaseList:IngridientsService, public cup:CupService) { }
   public chooseBase(obj:IngridientInterface):void{
     this.baseIngridientsList.forEach(item=>{
       item.checkState = false;
