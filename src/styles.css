@@ -313,16 +313,7 @@ body{
 .fill-container{
 	padding-top: 30px;
 }
-.info-message{
-	background: rgba(208, 188, 16, 0.6);
-  width: 50%;
-  margin: auto;
-  text-align: center;
-  border-radius: 20px;
-  padding: 11px;
-  font-weight: bold;
-  font-size: 15px;
-}
+
 .dragula>div{
     cursor:move;
 }
@@ -612,4 +603,21 @@ form>input.owner-name{
 }
 form>input.owner-name:focus{
 	outline: none;
+}
+
+.cff-selector{
+  display: block;
+  margin: 10px auto;
+  max-width: 275px;
+}
+.cff-selector:after{
+  clear: both;
+  content:"";
+  display: table;
+}
+.selector{
+  color: black;
+}
+.selector option{
+  color: black;
 }

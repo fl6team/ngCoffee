@@ -1,1 +1,5 @@
+<p>Logged in as {{currUser.name}}</p>
+  <select (change)="onChange($event.target.value)" class="selector">
+    <option *ngFor="let u of users" value="{{u.name}}">{{u.name}}</option>
+  </select>
 <router-outlet></router-outlet>

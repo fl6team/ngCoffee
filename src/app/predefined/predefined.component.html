@@ -5,6 +5,10 @@
 		<div class="container">
 			<h1>Choose your coffee</h1>
       <input type="text" class="form-control" placeholder="COFFEE NAME" [(ngModel)]="filter" (input)="applyFilter()">
+      <div class="btn-group cff-selector" *ngIf="isLogged()">
+        <button type="button" class="btn btn-primary" (click)="showAll()">Alles coffee</button>
+        <button type="button" class="btn btn-primary" (click)="showMy()">Meine coffee</button>
+      </div>
 			<div class="row">
         <h3 *ngIf="noItems">No needed coffee? Try to create your own!</h3>
         <div class="col-xs-4" *ngFor="let item of coffeeToShow">
@@ -12,6 +16,7 @@
 						<div class="coffee-im coffee-im-1"></div>
 						<h3>{{item.name}}</h3>
 						<a class="btn" (click)="makeOrder(item)">Make an order</a>
+            <a *ngIf="isAdminOrOwner(item)" class="btn" (click)="removeCoffee(item)">Remove coffee</a>
 					</div>
 				</div>
 			</div>

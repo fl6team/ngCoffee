@@ -11,16 +11,21 @@ declare var firebase: any;
   styleUrls: ['./predefined.component.css']
 })
 export class PredefinedComponent implements OnInit {
-  public showLoadder = true;
+  public showLoadder:boolean = true;
+  public showMoreBtn:boolean = true;
+  public isFiltered:boolean = false;
+  public noItems:boolean = false;
   public coffeeList = [];
   public coffeeToShow = [];
-  public filter = "";
-  public isFiltered = false;
-  public noItems = false;
   public filteredList = [];
-  public showMoreBtn = true;
-  public itemCounter = 3;
-  constructor(private router:Router, private cup:CupService, private servedBaseList:IngridientsService) { }
+  public myCoffee = [];
+  public lastStateOfUsers = [];
+  public filter:string = "";
+  public itemCounter:number = 6;
+  public isMySelected = false;
+
+  constructor(private router:Router, private cup:CupService, private servedBaseList:IngridientsService) {
+  }
 
   public applyFilter(){
     this.noItems = false;
@@ -36,14 +41,15 @@ export class PredefinedComponent implements OnInit {
     this.filteredList = this.coffeeList.filter((item)=>{
       return item.name.indexOf(this.filter) !== -1;
     });
-    this.itemCounter = 3;
+    this.itemCounter = 6;
     this.coffeeToShow = this.filteredList.slice(0, this.itemCounter);
-    if(this.filteredList.length <= 3) {
+    if(this.filteredList.length <= 6) {
       this.showMoreBtn = false;
     }
     if(this.filteredList.length < 1) {
       this.noItems = true;
     }
+    this.lastStateOfUsers = this.coffeeToShow;
   }
   public showMore(){
     if(this.isFiltered){
@@ -63,32 +69,74 @@ export class PredefinedComponent implements OnInit {
         this.showMoreBtn = false;
       }
     }
+    this.lastStateOfUsers = this.coffeeToShow;
   }
   ngOnInit() {
+    console.log(this.coffeeList);
     window.localStorage.setItem("redirect","false");
     this.servedBaseList.fetchCoffee().subscribe(
       (data) => {
         for(let elem in data){
-          this.coffeeList.push(data[elem]);
+          let el = data[elem];
+          el.key = elem;
+          this.coffeeList.push(el);
         }
         this.showLoadder = false;
-        if(this.coffeeList.length > 3){
-          this.coffeeToShow = this.coffeeList.slice(0,3);
+        if(this.coffeeList.length > 6){
+          this.coffeeToShow = this.coffeeList.slice(0,6);
         } else {
           this.coffeeToShow = this.coffeeList;
           this.showMoreBtn = false;
         }
+        this.lastStateOfUsers = this.coffeeToShow;
       }
     );
-
-
-
-
+  }
+  public isLogged(){
+    return window.localStorage.getItem("userName");
   }
 
+  public removeCoffee(item){
+    let i = this.coffeeList.indexOf(item);
+    if (i > -1) {
+      this.coffeeList.splice(i, 1);
+    }
+    i = this.coffeeToShow.indexOf(item);
+    if (i > -1) {
+      this.coffeeToShow.splice(i, 1);
+    }
+    firebase.database().ref('/definedCoffee').child(item.key).remove();
+  }
+
+  public isAdminOrOwner(item){
+    return (window.localStorage.getItem("isAdmin") === "true") || (window.localStorage.getItem("userName") === item.author);
+  }
+
+  public showMy(){
+    this.isMySelected = true;
+    this.lastStateOfUsers = this.coffeeToShow;
+      this.myCoffee = this.coffeeList.filter((item)=>{
+      return item.author === (window.localStorage.getItem("userName") || "guest");
+    });
+    this.coffeeToShow = this.myCoffee;
+    if(this.myCoffee.length <= 6) {
+      this.showMoreBtn = false;
+    }
+    if(this.myCoffee.length === 0) {
+      this.showMoreBtn = false;
+      this.noItems = true;
+    }
+  }
+  public showAll(){
+    this.noItems = false;
+    this.coffeeToShow = this.lastStateOfUsers;
+    console.log(this.coffeeToShow);
+    if(this.coffeeToShow.length >= 6) {
+      this.showMoreBtn = true;
+    }
+  }
 
   public configStart():void{
-    this.cup.refreshCups();
     this.router.navigate(['config']);
     this.cup.cupProperties.makeStepActive('sizeState');
     this.cup.cupProperties.makeStepAvaliable('sizeState');
@@ -97,7 +145,4 @@ export class PredefinedComponent implements OnInit {
     this.cup.definedCup = obj;
     this.router.navigate(['final']);
   }
-
-
-
 }
