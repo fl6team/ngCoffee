@@ -99,7 +99,7 @@
             }
             this.cup.definedCup.name = isConfirmed;
             this.cup.definedCup.adds.reverse()
-            this.cup.definedCup.author = window.localStorage.getItem("userName") || "guest";
+            this.cup.definedCup.author = window.localStorage.getItem("nickName") || "guest";
             firebase.database().ref('/definedCoffee').push(this.cup.definedCup);
             this.route.navigate(['final'])
           });

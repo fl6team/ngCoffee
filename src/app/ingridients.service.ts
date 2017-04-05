@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class IngridientsService {
   public ingridientsDataBase:IngridientInterface[] = [];
-
+  public users = [];
   public filterList = [
     {category:"all", text:"All", state:true},
     {category:"syrops", text:"Syrops", state:false},
@@ -31,6 +31,11 @@ export class IngridientsService {
   }
   public fetchCoffee(){
     return this.http.get('https://coffeeangular.firebaseio.com/definedCoffee.json').map(
+      (res) => res.json()
+    );
+  }
+  public fetchUsers(){
+    return this.http.get('https://coffeeangular.firebaseio.com/users.json').map(
       (res) => res.json()
     );
   }

@@ -4,18 +4,26 @@ import { Injectable }      from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
 import { Router, NavigationStart } from '@angular/router';
 import 'rxjs/add/operator/filter';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+import { IngridientInterface } from './ingridient-interface';
+import { IngridientsService } from './ingridients.service';
 
 // Avoid name not found warnings
 declare var Auth0Lock: any;
-
+declare var firebase: any;
 @Injectable()
 export class AuthService {
   // Configure Auth0
   lock = new Auth0Lock('7KoVexTTOhoChnqLdWoL4NvtaVFNnv0L', 'comanche.eu.auth0.com', {});
   userProfile: Object;
-
-  constructor(public router: Router) {
+  public users = [];
+  public usersExist = false;
+  public isCurrentUserAdmin = false;
+  constructor(public router: Router,private http: Http, public servedBaseList:IngridientsService) {
     this.userProfile = JSON.parse(localStorage.getItem('profile'));
+    //this.users = this.servedBaseList.users;
 
     this
       .router
@@ -32,8 +40,35 @@ export class AuthService {
               alert(error);
               return;
             }
+            //debugger;
+            // window.localStorage.setItem("userName", profile.name);
+            // window.localStorage.setItem("nickName", profile.nickname);
+            // window.localStorage.setItem("isAdmin", "false");
 
-            localStorage.setItem('profile', JSON.stringify(profile));
+            this.servedBaseList.fetchUsers().subscribe(
+              (data) => {
+                debugger;
+                //this.users = data;
+                for(let u in data){
+                  this.users.push(data[u])
+                }
+                this.users.forEach((u) => {
+                  if(u.nickname === profile.nickname) {
+                    this.isCurrentUserAdmin = u.isAdmin || false;
+                    this.usersExist = true;
+                  }
+                });
+                if(!this.usersExist) firebase.database().ref('/users').push(profile);
+
+                window.localStorage.setItem("userName", profile.name);
+                window.localStorage.setItem("nickName", profile.nickname);
+                window.localStorage.setItem("isAdmin", this.isCurrentUserAdmin.toString());
+
+                });
+
+
+
+            //localStorage.setItem('profile', JSON.stringify(profile));
             this.userProfile = profile;
           });
           localStorage.setItem('id_token', authResult.idToken);
@@ -57,5 +92,8 @@ export class AuthService {
     // Remove token from localStorage
     localStorage.removeItem('id_token');
     this.userProfile = undefined;
+    window.localStorage.setItem("userName", "guest");
+    window.localStorage.setItem("nickName", "");
+    window.localStorage.setItem("isAdmin", "false");
   }
 }

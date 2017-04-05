@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { IngridientInterface } from './ingridient-interface';
+import { IngridientsService } from './ingridients.service';
 
 @Component({
   selector: 'app-root',
@@ -10,24 +12,12 @@ import { AuthService } from './auth.service';
 export class AppComponent {
   public users = [];
   public currUser;
-  constructor(private route:Router, private auth: AuthService){
+  constructor(private route:Router, private auth: AuthService,public servedBaseList:IngridientsService){
     this.currUser = {name:window.localStorage.getItem("userName") || "guest", isAdmin:window.localStorage.getItem("isAdmin") === "true" || false};
-    this.users.push({name:"Thomas", isAdmin: false});
-    this.users.push({name:"Richard", isAdmin: false});
-    this.users.push({name:"Abraham", isAdmin: true});
    }
-
-  public onChange(user){
-    this.currUser = this.getUserByName(user);
-    window.localStorage.setItem("userName", this.currUser.name);
-    window.localStorage.setItem("isAdmin", this.currUser.isAdmin);
-    this.route.navigate(['']);
-  }
-  public getUserByName(name){
-    for(let u of this.users){
-      if(u.name == name) return u;
-    }
-  }
+   public getcurrentUser(){
+     return {name:window.localStorage.getItem("userName") || "guest", isAdmin:window.localStorage.getItem("isAdmin") === "true" || false};
+   }
   ngOnInit(){
     console.log(this.currUser);
   }

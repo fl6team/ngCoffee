@@ -93,7 +93,7 @@ export class PredefinedComponent implements OnInit {
     );
   }
   public isLogged(){
-    return window.localStorage.getItem("userName");
+    return window.localStorage.getItem("nickName");
   }
 
   public removeCoffee(item){
@@ -109,13 +109,13 @@ export class PredefinedComponent implements OnInit {
   }
 
   public isAdminOrOwner(item){
-    return (window.localStorage.getItem("isAdmin") === "true") || (window.localStorage.getItem("userName") === item.author);
+    return (window.localStorage.getItem("isAdmin") === "true") || (window.localStorage.getItem("nickName") === item.author);
   }
 
   public showMy(){
     this.isMySelected = true;
       this.myCoffee = this.coffeeList.filter((item)=>{
-      return item.author === (window.localStorage.getItem("userName") || "guest");
+      return item.author === (window.localStorage.getItem("nickName") || "guest");
     });
     this.coffeeToShow = this.myCoffee;
     if(this.myCoffee.length <= 6) {
