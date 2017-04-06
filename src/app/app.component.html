@@ -1,6 +1,6 @@
 <div class="login-box">
   <p>Logged in as {{getcurrentUser().name}} [{{getcurrentUser().isAdmin ? 'Admin' : 'User'}}]</p>
-  <button class="btn btn-primary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
-  <button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
+  <button class="btn btn-log" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
+  <button class="btn btn-log" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
 </div>
 <router-outlet></router-outlet>

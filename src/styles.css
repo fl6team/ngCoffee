@@ -620,7 +620,11 @@ form>input.owner-name:focus{
 .cff-selector {
   display: block;
   margin: 10px auto 30px auto;
-  max-width: 275px;
+  width: 300px;
+}
+.cff-selector>button {
+  width: 50%;
+	display: inline-block;
 }
 .cff-selector:after{
   clear: both;
@@ -657,4 +661,7 @@ form>input.owner-name:focus{
   padding: 11px;
   font-weight: bold;
   font-size: 15px;
+ }
+ .btn-log{
+	 margin-top: 10px;
  }
