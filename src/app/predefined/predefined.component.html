@@ -12,11 +12,20 @@
 			<div class="row">
         <h3 *ngIf="noItems">No needed coffee? Try to create your own!</h3>
         <div class="col-xs-4" *ngFor="let item of coffeeToShow">
-					<div class="coffee-box">
+					<div class="coffee-box" (mouseover)="showCoffeeDetails(item)" (mouseleave)="hideCoffeeDetails(item)">
 						<div class="coffee-im coffee-im-1"></div>
 						<h3>{{item.name}}</h3>
 						<a class="btn" (click)="makeOrder(item)">Make an order</a>
             <a *ngIf="isAdminOrOwner(item)" class="remove-coffee" (click)="removeCoffee(item)"></a>
+            <div *ngIf="item.showCoffeeDetails" class="coffee-details">
+              Cup Size: {{item.size.size}} <br />
+              Coffe Base: {{item.base.name}} <br />
+              Addons:
+              <span class="coffee-details_addon" *ngFor="let add of item.adds; let last = last">
+                {{add.name}}<span *ngIf="last == false">,</span>
+              </span> <br />
+              Sugar: {{item.sugar.amount}} <br />
+            </div>
 					</div>
 				</div>
 			</div>

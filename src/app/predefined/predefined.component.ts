@@ -107,6 +107,15 @@ export class PredefinedComponent implements OnInit {
     firebase.database().ref('/definedCoffee').child(item.key).remove();
   }
 
+  public showCoffeeDetails(item){
+    console.log(item);
+    item.showCoffeeDetails = true;
+  }
+
+  public hideCoffeeDetails(item){
+    item.showCoffeeDetails = false;
+  }
+
   public isAdminOrOwner(item){
     return (window.localStorage.getItem("isAdmin") === "true") || (window.localStorage.getItem("nickName") === item.author);
   }
